@@ -5,7 +5,7 @@ export interface IUser {
 }
 
 export interface IAdminUser extends IUser {
-  role: string;
+  permissions: string[];
 }
 
 export let status: 'loading' | 'success' | 'error';
@@ -18,29 +18,24 @@ export const users: IUser[] = [
   { name: 'Adilet', age: 27, city: 'Bishkek' },
 ];
 
-const filtredUsers: IUser[] = users.filter((user) => user.age !== undefined && user.age > 26);
+const filtredUsers: IUser[] = users.filter((user: IUser) => user.age && user.age > 26);
 
-export function sumNumbers(a: number, b: number): number {
+export function sum(a: number, b: number): number {
   return a + b;
 }
 
 export function removeChar(text: string, charToRemove: string): string {
-  const regex = new RegExp(charToRemove, 'g');
-  return text.replace(regex, '');
+  return text.replaceAll(charToRemove, '');
 }
 
 export function formatString(text: string, format: typeof textFormat): string {
   if (format === 'uppercase') {
     return text.toUpperCase();
-  }
-
-  if (format === 'lowercase') {
+  } else if (format === 'lowercase') {
     return text.toLowerCase();
-  }
-
-  if (format === 'capitalize') {
+  } else if (format === 'capitalize') {
     return text.charAt(0).toUpperCase() + text.slice(1).toLowerCase();
+  } else {
+    return text;
   }
-
-  return text;
 }
