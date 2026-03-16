@@ -18,7 +18,7 @@ export const users: IUser[] = [
   { name: 'Adilet', age: 27, city: 'Bishkek' },
 ];
 
-const filtredUsers: IUser[] = users.filter((user: IUser) => user.age && user.age > 26);
+const filtredUsers: IUser[] = users.filter((user: IUser) => user.age > 26);
 
 export function sum(a: number, b: number): number {
   return a + b;
