@@ -1,1 +1,54 @@
-<h1>test</h1>
+<header class="header">
+  <nav class="header__nav container">
+    <div class="header__logo">
+      <span class="header__logo-desc">{{ companyName }}</span>
+    </div>
+
+    <ul class="header__menu">
+      <li class="header__menu-item"><a href="#">Главная</a></li>
+      <li class="header__menu-item"><a href="#">Про гида</a></li>
+      <li class="header__menu-item"><a href="#">Программа тура</a></li>
+      <li class="header__menu-item"><a href="#">Стоимость</a></li>
+      <li class="header__menu-item"><a href="#">Блог</a></li>
+      <li class="header__menu-item"><a href="#">Контакты</a></li>
+    </ul>
+
+    <button class="header__button">Консультация</button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">
+        НАСЛАДИСЬ ПРОГУЛКОЙ В ГОРАХ <br />
+        С КОМАНДОЙ ЕДИНОМЫШЛЕННИКОВ
+      </h1>
+
+      <div class="hero__search">
+        <div class="hero__field">
+          <select class="hero__input">
+            <option>Локация для тура</option>
+          </select>
+          <label class="hero__label">выберите из списка</label>
+        </div>
+
+        <div class="hero__field">
+          <select class="hero__input">
+            <option>Дата похода</option>
+          </select>
+          <label class="hero__label">укажите дату</label>
+        </div>
+
+        <div class="hero__field">
+          <select class="hero__input">
+            <option>Участники</option>
+          </select>
+          <label class="hero__label">выберите из списка</label>
+        </div>
+
+        <button class="hero__search-button">Найти программу</button>
+      </div>
+    </div>
+  </section>
+</main>
