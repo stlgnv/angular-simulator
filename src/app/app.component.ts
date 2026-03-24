@@ -8,6 +8,7 @@ import { Color } from '../enums/Color';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
+
 export class AppComponent {
   public readonly companyName = 'РУМТИБЕТ';
 
@@ -16,20 +17,22 @@ export class AppComponent {
     this.saveVisitCount();
   }
 
-  isPrimaryColor(color: string): boolean {
-    return Object.values(Color).includes(color as Color);
-  }
+  isPrimaryColor(color: Color): boolean {
+  const primaryColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
+  return primaryColors.includes(color);
+}
 
   saveLastVisit(): void {
-    const now = new Date().toISOString();
+    const now: string = new Date().toISOString();
     localStorage.setItem('lastVisit', now);
   }
 
   saveVisitCount(): void {
-    const visits = localStorage.getItem('visits');
+    const visits: string | null = localStorage.getItem('visits');
 
-    const count = visits ? Number(visits) : 0;
+    const count : number = visits ? Number(visits) : 0;
 
     localStorage.setItem('visits', String(count + 1));
   }
 }
+

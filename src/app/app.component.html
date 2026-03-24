@@ -4,16 +4,45 @@
       <span class="header__logo-desc">{{ companyName }}</span>
     </div>
 
-    <ul class="header__menu">
-      <li class="header__menu-item"><a href="#">Главная</a></li>
-      <li class="header__menu-item"><a href="#">Про гида</a></li>
-      <li class="header__menu-item"><a href="#">Программа тура</a></li>
-      <li class="header__menu-item"><a href="#">Стоимость</a></li>
-      <li class="header__menu-item"><a href="#">Блог</a></li>
-      <li class="header__menu-item"><a href="#">Контакты</a></li>
-    </ul>
+<ul class="header__menu">
+  <li class="header__menu-item">
+    <a id="go-to-home-link" href="#">
+      Главная
+    </a>
+  </li>
 
-    <button class="header__button">Консультация</button>
+  <li class="header__menu-item">
+    <a id="go-to-about-guide-link" href="#">
+      Про гида
+    </a>
+  </li>
+
+  <li class="header__menu-item">
+    <a id="go-to-tour-program-link" href="#">
+      Программа тура
+    </a>
+  </li>
+
+  <li class="header__menu-item">
+    <a id="go-to-pricing-link" href="#">
+      Стоимость
+    </a>
+  </li>
+
+  <li class="header__menu-item">
+    <a id="go-to-blog-link" href="#">
+      Блог
+    </a>
+  </li>
+
+  <li class="header__menu-item">
+    <a id="go-to-contacts-link" href="#">
+      Контакты
+    </a>
+  </li>
+</ul>
+
+    <button class="header__button" id="open-consultation-button">Консультация</button>
   </nav>
 </header>
 
@@ -27,27 +56,27 @@
 
       <div class="hero__search">
         <div class="hero__field">
-          <select class="hero__input">
+          <select class="hero__input" id="tour-location-select">
             <option>Локация для тура</option>
           </select>
-          <label class="hero__label">выберите из списка</label>
+          <label class="hero__label" for="tour-location-select">выберите из списка</label>
         </div>
 
         <div class="hero__field">
-          <select class="hero__input">
+          <select class="hero__input" id="tour-date-select">
             <option>Дата похода</option>
           </select>
-          <label class="hero__label">укажите дату</label>
+          <label class="hero__label" for="tour-date-select">укажите дату</label>
         </div>
 
         <div class="hero__field">
-          <select class="hero__input">
+          <select class="hero__input" id="participants-count-select">
             <option>Участники</option>
           </select>
-          <label class="hero__label">выберите из списка</label>
+          <label class="hero__label" for="participants-count-select">выберите из списка</label>
         </div>
 
-        <button class="hero__search-button">Найти программу</button>
+        <button class="hero__search-button" id="search-tour-button">Найти программу</button>
       </div>
     </div>
   </section>
