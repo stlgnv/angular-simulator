@@ -10,7 +10,8 @@ import { Color } from '../enums/Color';
 })
 
 export class AppComponent {
-  public readonly companyName = 'РУМТИБЕТ';
+
+  companyName = 'РУМТИБЕТ';
 
   constructor() {
     this.saveLastVisit();
@@ -18,21 +19,19 @@ export class AppComponent {
   }
 
   isPrimaryColor(color: Color): boolean {
-  const primaryColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
-  return primaryColors.includes(color);
-}
+    const primaryColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
+    return primaryColors.includes(color);
+  }
 
   saveLastVisit(): void {
     const now: string = new Date().toISOString();
-    localStorage.setItem('lastVisit', now);
+    localStorage.setItem('last-visit', now);
   }
 
   saveVisitCount(): void {
     const visits: string | null = localStorage.getItem('visits');
-
     const count : number = visits ? Number(visits) : 0;
-
     localStorage.setItem('visits', String(count + 1));
   }
-}
 
+}

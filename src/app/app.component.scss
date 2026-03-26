@@ -1,16 +1,19 @@
 .header {
   background-color: #18121e80;
   color: #fff;
+
   &__nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 24px;
   }
+
   &__logo {
     font-weight: bold;
     font-size: 22px;
   }
+
   &__logo-desc::before {
     content: '';
     background-image: url('/assets/img/company_logo.png');
@@ -19,33 +22,33 @@
     height: 29px;
     margin-bottom: 8px;
   }
+
   &__menu {
     display: flex;
     gap: 24px;
-    list-style: none;
   }
-  &__menu-item a {
-    text-decoration: none;
-  }
+
   &__button {
     color: #1a3e3e;
     padding: 8px 16px;
     border-radius: 6px;
     border: none;
   }
+
   &__button:hover {
     background-color: #e5e7eb;
   }
 }
 
 .hero {
-  background-image: url('/assets/img/mountains_img.jpg');
+  background-image: url('/assets/img/mountains.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   width: 100%;
   min-height: 100vh;
   color: #fff;
+
   &__title {
     position: absolute;
     top: 551px;
@@ -53,9 +56,11 @@
     font-size: 50px;
     font-weight: 400;
   }
+
   &__label {
     margin-top: 8px;
   }
+
   &__search {
     display: flex;
     position: absolute;
@@ -69,6 +74,7 @@
     width: 100%;
     max-width: 1180px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+
     &-button {
       flex: 0 0 auto;
       width: 213px;
@@ -84,11 +90,13 @@
       color: #fff;
     }
   }
+
   &__field {
     display: flex;
     flex: 1;
     flex-direction: column;
   }
+
   &__input {
     background-color: transparent;
     backdrop-filter: blur(6px);
