@@ -1,1 +1,64 @@
-<h1 style="display: flex; justify-content: center; font-family: sans-serif;">NGX SIMULATOR</h1>
+<header class="header">
+  <nav class="header__nav container">
+    <div class="header__logo">
+      <span class="header__logo-desc">{{ companyName }}</span>
+    </div>
+
+    <div class="header__menu">
+      <a id="go-to-home-link" href="#">Главная</a>
+      <a id="go-to-about-guide-link" href="#">Про гида</a>
+      <a id="go-to-tour-program-link" href="#">Программа тура</a>
+      <a id="go-to-pricing-link" href="#">Стоимость</a>
+      <a id="go-to-blog-link" href="#">Блог</a>
+      <a id="go-to-contacts-link" href="#">Контакты</a>
+    </div>
+
+    <button class="header__button" id="open-consultation-button">
+      Консультация
+    </button>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">
+        НАСЛАДИСЬ ПРОГУЛКОЙ В ГОРАХ <br />
+        С КОМАНДОЙ ЕДИНОМЫШЛЕННИКОВ
+      </h1>
+
+      <div class="hero__search">
+        <div class="hero__field">
+          <select class="hero__input" id="tour-location-select">
+            <option>Локация для тура</option>
+          </select>
+          <label class="hero__label" for="tour-location-select">
+            выберите из списка
+          </label>
+        </div>
+
+        <div class="hero__field">
+          <select class="hero__input" id="tour-date-select">
+            <option>Дата похода</option>
+          </select>
+          <label class="hero__label" for="tour-date-select">
+            укажите дату
+          </label>
+        </div>
+
+        <div class="hero__field">
+          <select class="hero__input" id="participants-count-select">
+            <option>Участники</option>
+          </select>
+          <label class="hero__label" for="participants-count-select">
+            выберите из списка
+          </label>
+        </div>
+
+        <button class="hero__search-button" id="search-tour-button">
+          Найти программу
+        </button>
+      </div>
+    </div>
+  </section>
+</main>
