@@ -1,0 +1,5 @@
+@use './mixins' as *;
+
+.primary-button {
+  @include base-btn;
+}

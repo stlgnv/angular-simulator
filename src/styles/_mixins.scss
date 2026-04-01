@@ -1,0 +1,15 @@
+@mixin base-btn {
+  background-color: var(--secondary-color);
+  border: 2px solid var(--secondary-color);
+  color: var(--white-color);
+  line-height: 20px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+@mixin title {
+  color: #18121E;
+  font-weight: 800;
+  font-size: 32px;
+  margin-top: 8px;
+}
