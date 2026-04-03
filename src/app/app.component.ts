@@ -1,67 +1,52 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import './training';
 import { Color } from '../enums/Color';
 import { FormsModule } from '@angular/forms';
-import { ILocation } from './interfaces/ILocations';
 import { IOffer } from './interfaces/IOffer';
 import { IParticipant } from './interfaces/IParticipant';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
+
+type WidgetType = 'counter' | 'date';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule,DatePipe],
+  imports: [FormsModule, DatePipe, NgClass],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent {
 
-  companyName: string = 'РУМТИБЕТ';
+  companyName: string = 'румтибет';
+  widget: WidgetType = 'counter';
+  text: string = '';
+  cities: string [] = ['Almaty', 'Astana', 'Aktau'];
 
-  selectedLocation: ILocation | null = null;
-  selectedDate: string | null= null;
+  selectedLocation: string | null = null;
+  selectedDate: string | null = null;
   selectedParticipants: IParticipant | null = null;
 
   currentTime: Date = new Date();
   clickCount: number = 0;
-  isShowTime: boolean = false;
-  text: string = '';
   isLoading: boolean = true;
-
-  private timerId?: ReturnType<typeof setInterval>;
 
   tourOffers: IOffer[] = [
     {
+      id: 1,
       title: 'Опытный гид',
-      text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      img: 'assets/img/guide.svg',
-      background: '#E5EEEB',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      icon: 'guide-icon',
     },
     {
+      id: 2,
       title: 'Безопасный поход',
-      text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      img: 'assets/img/safe.svg',
-      background: '#E3E6EE',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      icon: 'safe-icon',
     },
     {
+      id: 3,
       title: 'Лояльные цены',
-      text: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      img: 'assets/img/size.svg',
-      background: '#F3F1E1',
-    }
-  ]
-
-  cities: ILocation[] = [
-    {
-      name: 'Almaty',
-      id: 1
-    },
-    {
-      name: 'Astana',
-      id: 2
-    },
-    {
-      name: 'Aktau',
-      id: 3
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
+      icon: 'size-icon',
     }
   ]
 
@@ -83,18 +68,11 @@ export class AppComponent implements OnInit, OnDestroy{
     }
   ]
 
-  ngOnInit() {
-  this.saveLastVisit();
-  this.saveVisitCount();
-
-  setInterval(() => {
-    this.isLoading = false;
-  }, 2000);
+  constructor() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 2000);
 }
-
-  ngOnDestroy() {
-    clearInterval(this.timerId);
-  }
 
   private isPrimaryColor(color: Color): boolean {
     const primaryColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
@@ -112,29 +90,21 @@ export class AppComponent implements OnInit, OnDestroy{
     localStorage.setItem('visits', String(count + 1));
   }
 
-  increment() {
+  increment(): void {
     this.clickCount++;
   }
 
-  decrement() {
+  decrement(): void {
     if (this.clickCount > 0) {
       this.clickCount--;
     }
   }
 
-  toggleTime() {
-    this.isShowTime = !this.isShowTime;
-
-    if (this.isShowTime) {
+  toggleWidget():void {
+    this.widget = this.widget === 'counter' ? 'date' : 'counter';
+    if (this.widget === 'date') {
       this.currentTime = new Date();
-
-      this.timerId = setInterval(() => {
-
-        this.currentTime = new Date();
-      }, 1000);
-    } else {
-      clearInterval(this.timerId);
     }
-  }
+}
 
 }

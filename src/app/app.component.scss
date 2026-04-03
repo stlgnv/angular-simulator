@@ -36,6 +36,11 @@
     font-size: 22px;
   }
 
+  &__logo-desc {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
   &__logo-desc::before {
     content: '';
     background-image: url('/assets/img/company_logo.png');
@@ -70,9 +75,26 @@
   }
 
   &__timer {
-    opacity: 50%;
-    font-size: 31px;
+    font-size: 18px;
+    color: var(--shdaow-light);
   }
+
+  &__counter-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--shdaow-light);
+  }
+
+   &__counter-minus {
+    margin-right: 50px;
+   }
+
+   &__counter-time {
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    color: var(--secondary-color);
+   }
 }
 
 .hero {
@@ -91,6 +113,7 @@
     left: 370px;
     font-size: 50px;
     font-weight: 400;
+    text-transform: uppercase;
   }
 
   &__label {
@@ -151,18 +174,36 @@
     position: absolute;
     left: 319px;
     bottom: 15px;
+    display: flex;
   }
 
   &__live-input {
     background-color: transparent;
     border: 2px solid #FDFDFD;
     color: #FDFDFD;
-    padding: 14px;
     border-radius: 8px;
+    min-width: 270px;
+    padding-left: 12px;
   }
 
   &__live-input::placeholder {
     color: #FDFDFD;
+  }
+
+  &__arrow {
+    position: absolute;
+    left: 254px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: white;
+    font-size: 20px;
+    background-image: url('/assets/img/arrow-icon.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 14px;
+    height: 14px;
+    cursor: pointer;
   }
 
   .output {
@@ -282,9 +323,16 @@
     padding: 4px 14px;
   }
 
-  .tour-offer__icon {
-    background-repeat: no-repeat;
-    background-position: center;
+  .tour-offer__icon--guide-icon {
+    background: #E5EEEB;
+  }
+
+  .tour-offer__icon--safe-icon {
+    background: #E3E6EE;
+  }
+
+  .tour-offer__icon--size-icon {
+    background: #F3F1E1;
   }
 
   .tour-offer__btn {
