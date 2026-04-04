@@ -26,23 +26,23 @@
           <span class="header__timer">
             {{ currentTime | date: 'dd.MM.yyyy HH:mm:ss' }}
           </span>
-        }
-
-        <div class="header__counter-wrapper">
-          <button (click)="increment()" class="header__counter-btn" id="counter-increment">+</button>
+        } @else {
+          <div class="header__counter-wrapper">
+          <button (click)="clickCount = clickCount + 1" class="header__counter-btn" id="counter-increment">+</button>
           <span class="header__counter">
             {{ clickCount }}
           </span>
-          <button (click)="decrement()"
+          <button (click)="clickCount > 0 ? clickCount = clickCount - 1 : null"
                   [disabled]="clickCount === 0"
                   class="header__counter-btn header__counter-minus"
                   id="counter-decrement">
                   -
           </button>
-          <button (click)="toggleWidget()" class="header__counter-time" id="toggle-date-button">
-            {{ widget === 'date' ? 'Скрыть дату' : 'Показать дату' }}
-          </button>
         </div>
+        }
+        <button (click)="toggleWidget()" class="header__counter-time" id="toggle-date-button">
+            {{ widget === 'date' ? 'Скрыть дату' : 'Показать дату' }}
+        </button>
       </div>
     </header>
 
@@ -100,9 +100,9 @@
                     Участники
                 </option>
 
-                @for (participant of participants; track participant.id) {
+                @for (participant of participants; track $index) {
                   <option [ngValue]="participant" class="hero__option">
-                    {{ participant.title }}
+                    {{ participant }}
                   </option>
                 }
               </select>

@@ -3,7 +3,6 @@ import './training';
 import { Color } from '../enums/Color';
 import { FormsModule } from '@angular/forms';
 import { IOffer } from './interfaces/IOffer';
-import { IParticipant } from './interfaces/IParticipant';
 import { DatePipe, NgClass } from '@angular/common';
 
 type WidgetType = 'counter' | 'date';
@@ -20,10 +19,11 @@ export class AppComponent {
   widget: WidgetType = 'counter';
   text: string = '';
   cities: string [] = ['Almaty', 'Astana', 'Aktau'];
+  participants: string [] = ['2 участника', '4 участника', '6 участника'];
 
   selectedLocation: string | null = null;
   selectedDate: string | null = null;
-  selectedParticipants: IParticipant | null = null;
+  selectedParticipants: string | null = null;
 
   currentTime: Date = new Date();
   clickCount: number = 0;
@@ -46,25 +46,7 @@ export class AppComponent {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'size-icon',
-    }
-  ]
-
-  participants: IParticipant[] = [
-    {
-      id: 1,
-      number: 2,
-      title: '2 Участника'
-    },
-    {
-      id: 2,
-      number: 4,
-      title: '4 Участника'
-    },
-    {
-      id: 3,
-      number: 6,
-      title: '6 Участника'
+      icon: 'label-icon',
     }
   ]
 
@@ -88,16 +70,6 @@ export class AppComponent {
     const visits: string | null = localStorage.getItem('visits');
     const count : number = visits ? Number(visits) : 0;
     localStorage.setItem('visits', String(count + 1));
-  }
-
-  increment(): void {
-    this.clickCount++;
-  }
-
-  decrement(): void {
-    if (this.clickCount > 0) {
-      this.clickCount--;
-    }
   }
 
   toggleWidget():void {
