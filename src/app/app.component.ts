@@ -54,6 +54,12 @@ export class AppComponent {
     setTimeout(() => {
       this.isLoading = false;
     }, 2000);
+
+    setInterval(() => {
+      if (this.widget === 'date') {
+        this.currentTime = new Date();
+    }
+  }, 1000);
 }
 
   private isPrimaryColor(color: Color): boolean {
