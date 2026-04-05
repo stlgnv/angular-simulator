@@ -1,64 +1,201 @@
-<header class="header">
-  <nav class="header__nav container">
-    <div class="header__logo">
-      <span class="header__logo-desc">{{ companyName }}</span>
-    </div>
-
-    <div class="header__menu">
-      <a id="go-to-home-link" href="#">Главная</a>
-      <a id="go-to-about-guide-link" href="#">Про гида</a>
-      <a id="go-to-tour-program-link" href="#">Программа тура</a>
-      <a id="go-to-pricing-link" href="#">Стоимость</a>
-      <a id="go-to-blog-link" href="#">Блог</a>
-      <a id="go-to-contacts-link" href="#">Контакты</a>
-    </div>
-
-    <button class="header__button" id="open-consultation-button">
-      Консультация
-    </button>
-  </nav>
-</header>
-
-<main>
-  <section class="hero">
-    <div class="container">
-      <h1 class="hero__title">
-        НАСЛАДИСЬ ПРОГУЛКОЙ В ГОРАХ <br />
-        С КОМАНДОЙ ЕДИНОМЫШЛЕННИКОВ
-      </h1>
-
-      <div class="hero__search">
-        <div class="hero__field">
-          <select class="hero__input" id="tour-location-select">
-            <option>Локация для тура</option>
-          </select>
-          <label class="hero__label" for="tour-location-select">
-            выберите из списка
-          </label>
+@if (isLoading) {
+  <div class="loading__container">
+    <img src="assets/img/loading-icon.svg" alt="loading" class="loading__icon">
+  </div>
+} @else {
+    <header class="header">
+      <nav class="header__nav container">
+        <div class="header__logo">
+          <span class="header__logo-desc">{{ companyName }}</span>
         </div>
-
-        <div class="hero__field">
-          <select class="hero__input" id="tour-date-select">
-            <option>Дата похода</option>
-          </select>
-          <label class="hero__label" for="tour-date-select">
-            укажите дату
-          </label>
+        <div class="header__menu">
+          <a id="home" href="#">Главная</a>
+          <a id="about-guide" href="#">Про гида</a>
+          <a id="tour-program" href="#">Программа тура</a>
+          <a id="pricing" href="#">Стоимость</a>
+          <a id="blog" href="#">Блог</a>
+          <a id="contacts" href="#">Контакты</a>
         </div>
+        <button class="header__button" id="consultation-button">
+          Консультация
+        </button>
+      </nav>
 
-        <div class="hero__field">
-          <select class="hero__input" id="participants-count-select">
-            <option>Участники</option>
-          </select>
-          <label class="hero__label" for="participants-count-select">
-            выберите из списка
-          </label>
+      <div class="container header__timer-wrapper">
+        @if (widget === 'date') {
+          <span class="header__timer">
+            {{ currentTime | date: 'dd.MM.yyyy HH:mm:ss' }}
+          </span>
+        } @else {
+          <div class="header__counter-wrapper">
+          <button (click)="clickCount = clickCount + 1" class="header__counter-btn" id="counter-increment">+</button>
+          <span class="header__counter">
+            {{ clickCount }}
+          </span>
+          <button (click)="clickCount > 0 ? clickCount = clickCount - 1 : null"
+                  [disabled]="clickCount === 0"
+                  class="header__counter-btn header__counter-minus"
+                  id="counter-decrement">
+                  -
+          </button>
         </div>
-
-        <button class="hero__search-button" id="search-tour-button">
-          Найти программу
+        }
+        <button (click)="toggleWidget()" class="header__counter-time" id="toggle-date-button">
+            {{ widget === 'date' ? 'Скрыть дату' : 'Показать дату' }}
         </button>
       </div>
-    </div>
-  </section>
-</main>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="container">
+          <h1 class="hero__title">
+            насладись прогулкой в горах <br />
+            с командой единомышленников
+          </h1>
+
+          <form class="hero__search container">
+            <div class="hero__field">
+              <select
+                class="hero__input"
+                id="location"
+                name="location"
+                [(ngModel)]="selectedLocation">
+
+                <option [ngValue]="null" disabled class="hero__option">
+                  Локация для тура
+                </option>
+
+                @for (city of cities; track $index) {
+                  <option [ngValue]="city" class="hero__option">
+                    {{ city }}
+                  </option>
+                }
+              </select>
+
+              <label class="hero__label" for="location">
+                выберите из списка
+              </label>
+            </div>
+
+            <div class="hero__field">
+              <input
+                type="date"
+                class="hero__input"
+                name="date"
+                id="tour-date"
+                [(ngModel)]="selectedDate">
+              <label class="hero__label" for="tour-date">
+                укажите дату
+              </label>
+            </div>
+
+            <div class="hero__field">
+              <select
+                class="hero__input"
+                id="participants"
+                name="participants"
+                [(ngModel)]="selectedParticipants">
+                <option [ngValue]="null" disabled class="hero__option">
+                    Участники
+                </option>
+
+                @for (participant of participants; track $index) {
+                  <option [ngValue]="participant" class="hero__option">
+                    {{ participant }}
+                  </option>
+                }
+              </select>
+              <label class="hero__label" for="participants">
+                выберите из списка
+              </label>
+            </div>
+
+            <button
+              class="hero__search-button primary-button"
+              id="search-tour"
+              [disabled]="!selectedLocation || !selectedDate || !selectedParticipants">
+              Найти программу
+            </button>
+          </form>
+
+          <div class="hero__live-inputs">
+            <input
+              type="text"
+              [(ngModel)]="text"
+              placeholder="Живой инпут"
+              class="hero__live-input"
+              id="live-input">
+            <span class="hero__arrow"></span>
+            <p class="hero__live-input output">
+              {{ text || 'Введенный текст' }}
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <section class="tour-overview container">
+      <div class="tour-overview__video">
+        <img src="assets/img/mountain_smoke.png" alt="mountains" class="tour-overview__video-bg">
+        <img src="assets/img/house.png" alt="house" class="tour-overview__video-overlay">
+        <img src="assets/img/play-icon.svg" alt="btn-play" class="tour-overview__video-play">
+      </div>
+
+      <div class="tour-overview__content">
+        <span class="tour-overview__subtitle">о нашем походе</span>
+        <h3 class="tour-overview__title">
+          Исследуйте все горные массивы мира вместе с нами
+        </h3>
+
+        <p class="tour-overview__text">
+          Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.
+        </p>
+
+        <button class="tour-overview__btn primary-button" id="program-tour">
+          Программа тура
+        </button>
+      </div>
+    </section>
+
+    <section class="tour-offer-wrapper">
+      <div class="tour-offer container">
+        <div class="tour-offer__content">
+          <span class="tour-offer__subtitle">наше предложение</span>
+          <h3 class="tour-offer__title">Лучшие программы для тебя</h3>
+          <p class="tour-offer__text">
+            Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+          </p>
+
+          <ul class="tour-offer__list">
+            @for (offer of tourOffers; track offer.id) {
+              <li class="tour-offer__item">
+                <img
+                    class="tour-offer__icon"
+                    [src]="'assets/img/' + offer.icon + '.svg'"
+                    alt="icon"
+                    [ngClass]="'tour-offer__icon--' + offer.icon">
+                <div>
+                  <h4 class="tour-offer__item-title">
+                    {{ offer.title }}
+                  </h4>
+                  <p class="tour-offer__item-text">
+                    {{ offer.description }}
+                  </p>
+                </div>
+              </li>
+            }
+          </ul>
+          <button class="tour-offer__btn primary-button" id="size-program">
+            Стоимость программ
+          </button>
+        </div>
+        <div class="tour-offer__media">
+          <img src="assets/img/lake.png" alt="lake" class="tour-offer__img">
+          <img src="assets/img/canyon.png" alt="canyon" class="tour-offer__img">
+          <img src="assets/img/snowmobile.png" alt="snowmobile" class="tour-offer__img">
+          <img src="assets/img/valley.png" alt="valley" class="tour-offer__img">
+        </div>
+      </div>
+    </section>
+}
