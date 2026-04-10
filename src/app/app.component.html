@@ -143,8 +143,8 @@
       </div>
 
       <div class="tour-overview__content">
-        <span class="tour-overview__subtitle">о нашем походе</span>
-        <h3 class="tour-overview__title">
+        <span class="section-subtitle">о нашем походе</span>
+        <h3 class="section-title">
           Исследуйте все горные массивы мира вместе с нами
         </h3>
 
@@ -152,7 +152,7 @@
           Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.
         </p>
 
-        <button class="tour-overview__btn primary-button" id="program-tour">
+        <button class="tour-overview__btn primary-button" id="program-tour" (click)="messageService.showWarnMessage('Программа недоступна')">
           Программа тура
         </button>
       </div>
@@ -161,8 +161,8 @@
     <section class="tour-offer-wrapper">
       <div class="tour-offer container">
         <div class="tour-offer__content">
-          <span class="tour-offer__subtitle">наше предложение</span>
-          <h3 class="tour-offer__title">Лучшие программы для тебя</h3>
+          <span class="section-subtitle">наше предложение</span>
+          <h3 class="section-title">Лучшие программы для тебя</h3>
           <p class="tour-offer__text">
             Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
           </p>
@@ -186,7 +186,7 @@
               </li>
             }
           </ul>
-          <button class="tour-offer__btn primary-button" id="size-program">
+          <button class="tour-offer__btn primary-button" id="size-program" (click)="messageService.showInfoMessage('Стоимость отправлена на почту')">
             Стоимость программ
           </button>
         </div>
@@ -198,4 +198,82 @@
         </div>
       </div>
     </section>
-}
+    <section class="popular-directions container">
+      <div class="popular-directions__header">
+        <span class="section-subtitle">по версии отдыхающих</span>
+        <h3 class="section-title">Популярные направления</h3>
+      </div>
+      <div class="popular-directions__cards">
+        @for (card of galleryCards; track card.id) {
+          <div class="popular-directions__card">
+            <img [src]="'assets/img/' + card.image + '.png'" alt="lake-mountains" class="popular-directions__card-img">
+            <span class="popular-directions__card-rating">
+              ⭐ {{ card.rating.toFixed(1) }}
+            </span>
+            <div class="popular-directions__card-content">
+              <h4 class="popular-directions__card-title">{{ card.title }}</h4>
+              <p class="popular-directions__card-description">{{ card.description }}</p>
+              <span class="popular-directions__card-price">{{ card.price }} $</span>
+            </div>
+          </div>
+        }
+      </div>
+      <button class="popular-directions__button primary-button" (click)="messageService.showSuccessMessage('Направления получены')">
+        Рейтинг направлений
+      </button>
+    </section>
+
+    <div class="blog-section">
+      <section class="container">
+      <div class="blog-header">
+        <span class="section-subtitle">делимся впечатлениями</span>
+        <h3 class="section-title">Блог о путешествиях</h3>
+      </div>
+      <div class="blog-container">
+        @for (article of articles; track article.id) {
+          <article class="blog-card">
+            <div class="card-image">
+              <img [src]="'assets/img/' + article.image + '.jpg'" alt="italy">
+            </div>
+            <div class="card-content">
+              <h3 class="card-title">
+                {{ article.title }}
+              </h3>
+              <p class="card-text">
+                {{ article.description }}
+              </p>
+              <div class="card-footer">
+                <time class="date">01/04/2023</time>
+                <a href="#" class="read-more">читать статью</a>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+      <div class="blog-actions">
+        <button class="btn-more primary-button" (click)="messageService.showErrorMessage('Материалы недоступны')">Другие материалы</button>
+      </div>
+      </section>
+    </div>
+    <div class="notification-service">
+      @for (message of messageService.messages; track $index) {
+        <ng-container [ngTemplateOutlet]="serviceMessage" [ngTemplateOutletContext]="{ $implicit: message, serviceIndex: $index }">
+        </ng-container>
+      }
+    </div>
+    }
+
+    <ng-template #serviceMessage let-message let-id="serviceIndex">
+      <div class="notification">
+        <div class="notification__left">
+          <img src="assets/img/service-icon.svg" alt="service-icon" class="notification__icon">
+          <div class="notification__text">
+            <h6 class="notification__title">{{ message.title }}</h6>
+            <span class="notification__desc">{{ message.content }}</span>
+          </div>
+        </div>
+        <button class="notification__close" (click)="messageService.closeMessage(message.id)">
+          <img src="assets/img/close-icon.svg" alt="close">
+        </button>
+      </div>
+    </ng-template>

@@ -1,15 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import './training';
 import { Color } from '../enums/Color';
 import { FormsModule } from '@angular/forms';
 import { IOffer } from './interfaces/IOffer';
-import { DatePipe, NgClass } from '@angular/common';
+import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
+import { IGallery } from './interfaces/IGallery';
+import { IArticles } from './interfaces/IArticles';
+import { MessageService } from '../message.service';
+import { LocalStorageService } from '../local-storage.service';
 
 type WidgetType = 'counter' | 'date';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, DatePipe, NgClass],
+  imports: [FormsModule, DatePipe, NgClass, NgTemplateOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -17,7 +21,7 @@ export class AppComponent {
 
   companyName: string = 'румтибет';
   widget: WidgetType = 'counter';
-  text: string = '';
+  text!: string ;
   cities: string [] = ['Almaty', 'Astana', 'Aktau'];
   participants: string [] = ['2 участника', '4 участника', '6 участника'];
 
@@ -28,6 +32,9 @@ export class AppComponent {
   currentTime: Date = new Date();
   clickCount: number = 0;
   isLoading: boolean = true;
+
+  readonly localStorageService: LocalStorageService = inject(LocalStorageService);
+  readonly messageService: MessageService = inject(MessageService);
 
   tourOffers: IOffer[] = [
     {
@@ -48,6 +55,60 @@ export class AppComponent {
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
       icon: 'label-icon',
     }
+  ];
+
+  galleryCards: IGallery[] = [
+    {
+      id: 1,
+      title: 'Озеро возле гор',
+      description: 'романтическое приключение',
+      price: 480,
+      rating: 4.9,
+      image: 'lake-mountains',
+    },
+    {
+      id: 2,
+      title: 'Ночь в горах',
+      description: 'в компании друзей',
+      price: 500,
+      rating: 4.5,
+      image: 'night-mountains',
+    },
+    {
+      id: 3,
+      title: 'Растяжка в горах',
+      description: 'для тех, кто забоится о себе',
+      price: 230,
+      rating: 5.0,
+      image: 'stretching-mountains',
+    }
+  ];
+
+  articles: IArticles[] = [
+    {
+      id: 1,
+      title: 'Красивая Италия, какая она в реальности?',
+      image: 'italy-coast',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.'
+    },
+    {
+      id: 2,
+      title: 'Долой сомнения! Весь мир открыт для вас!',
+      image: 'airplane',
+      description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации ... независимые способы реализации соответствующих...'
+    },
+    {
+      id: 3,
+      title: 'Как подготовиться к путешествию в одиночку? ',
+      image: 'backpack-traveler',
+      description: 'Для современного мира базовый вектор развития предполагает.'
+    },
+    {
+      id: 4,
+      title: 'Индия ... летим?',
+      image: 'tajmaxal',
+      description: 'Для современного мира базовый.'
+    }
   ]
 
   constructor() {
@@ -56,10 +117,8 @@ export class AppComponent {
     }, 2000);
 
     setInterval(() => {
-      if (this.widget === 'date') {
-        this.currentTime = new Date();
-    }
-  }, 1000);
+      this.currentTime = new Date();
+    }, 1000);
 }
 
   private isPrimaryColor(color: Color): boolean {
@@ -69,16 +128,15 @@ export class AppComponent {
 
   private saveLastVisit(): void {
     const now: string = new Date().toISOString();
-    localStorage.setItem('last-visit', now);
+    this.localStorageService.setValues('last-visit', now)
   }
 
   private saveVisitCount(): void {
-    const visits: string | null = localStorage.getItem('visits');
-    const count : number = visits ? Number(visits) : 0;
-    localStorage.setItem('visits', String(count + 1));
+    const count = this.localStorageService.getValues<number>('visits') ?? 0;
+    this.localStorageService.setValues('visits', count + 1);
   }
 
-  toggleWidget():void {
+  toggleWidget(): void {
     this.widget = this.widget === 'counter' ? 'date' : 'counter';
     if (this.widget === 'date') {
       this.currentTime = new Date();
