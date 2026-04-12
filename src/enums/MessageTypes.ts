@@ -1,6 +1,6 @@
 export enum MessageType {
-  WARN = 'warn',
-  INFO = 'info',
-  SUCCESS = 'success',
-  ERROR = 'error',
+  WARN = 'Warn',
+  INFO = 'Info',
+  SUCCESS = 'Success',
+  ERROR = 'Error',
 }

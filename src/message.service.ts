@@ -9,33 +9,33 @@ export class MessageService {
 
   messages: INotification[] = [];
 
-  addMessage(content: string,type: MessageType): void {
-    const id: number = Date.now();
-    const newMessage: INotification = { id, title: type, content, type };
-    this.messages = [newMessage,...this.messages];
-    setTimeout(() => {
-      this.closeMessage(id);
-    }, 5000);
-  }
-
   showWarnMessage(content: string): void {
-    this.addMessage(content,MessageType.WARN);
+    this.addMessage(content, MessageType.WARN);
   }
 
   showSuccessMessage(content: string): void {
-    this.addMessage(content,MessageType.SUCCESS);
+    this.addMessage(content, MessageType.SUCCESS);
   }
 
   showErrorMessage(content: string): void {
-    this.addMessage(content,MessageType.ERROR);
+    this.addMessage(content, MessageType.ERROR);
   }
 
   showInfoMessage(content: string): void {
-    this.addMessage(content,MessageType.INFO);
+    this.addMessage(content, MessageType.INFO);
   }
 
   closeMessage(id: number): void {
     this.messages = this.messages.filter((message: INotification) => message.id !== id);
+  }
+
+  private addMessage(content: string, type: MessageType): void {
+    const id: number = Date.now();
+    const newMessage: INotification = { id, title: type, content, type };
+    this.messages = [newMessage, ...this.messages];
+    setTimeout(() => {
+      this.closeMessage(id);
+    }, 5000);
   }
 
 }
