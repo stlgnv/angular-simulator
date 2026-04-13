@@ -6,10 +6,10 @@ import { IOffer } from './interfaces/IOffer';
 import { DatePipe, NgClass, NgTemplateOutlet } from '@angular/common';
 import { IGallery } from './interfaces/IGallery';
 import { IArticles } from './interfaces/IArticles';
-import { MessageService } from '../message.service';
 import { LocalStorageService } from '../local-storage.service';
+import { NotificationService } from '../notification.service';
 
-type WidgetType = 'counter' | 'date';
+type WidgetType = 'date' | 'counter';
 
 @Component({
   selector: 'app-root',
@@ -19,8 +19,11 @@ type WidgetType = 'counter' | 'date';
 })
 export class AppComponent {
 
+  localStorageService: LocalStorageService = inject(LocalStorageService);
+  notificationService: NotificationService = inject(NotificationService);
+
   companyName: string = 'румтибет';
-  widget: WidgetType = 'counter';
+  widget: WidgetType = 'date';
   text!: string ;
   cities: string [] = ['Almaty', 'Astana', 'Aktau'];
   participants: string [] = ['2 участника', '4 участника', '6 участника'];
@@ -29,12 +32,9 @@ export class AppComponent {
   selectedDate: string | null = null;
   selectedParticipants: string | null = null;
 
-  currentTime: Date = new Date();
+  currentTime!: Date;
   clickCount: number = 0;
   isLoading: boolean = true;
-
-  readonly localStorageService: LocalStorageService = inject(LocalStorageService);
-  readonly messageService: MessageService = inject(MessageService);
 
   tourOffers: IOffer[] = [
     {
@@ -132,15 +132,12 @@ export class AppComponent {
   }
 
   private saveVisitCount(): void {
-    const count = this.localStorageService.getValues<number>('visits') ?? 0;
+    const count: number = this.localStorageService.getValues<number>('visits') ?? 0;
     this.localStorageService.setValues('visits', count + 1);
   }
 
   toggleWidget(): void {
-    this.widget = this.widget === 'counter' ? 'date' : 'counter';
-    if (this.widget === 'date') {
-      this.currentTime = new Date();
-    }
+    this.widget = this.widget === 'date' ? 'counter' : 'date';
 }
 
 }

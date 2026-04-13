@@ -11,8 +11,8 @@ export class LocalStorageService {
   }
 
   getValues<T>(key: string): T | null {
-    const value: string | null = localStorage.getItem(key);
-    return value ? JSON.parse(value) as T : null;
+    const value = localStorage.getItem(key);
+    return value ? JSON.parse(value) : null;
   }
 
   clearElement(key: string): void {

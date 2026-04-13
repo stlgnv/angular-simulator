@@ -152,7 +152,7 @@
           Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.
         </p>
 
-        <button class="tour-overview__btn primary-button" id="program-tour" (click)="messageService.showWarnMessage('Программа недоступна')">
+        <button class="tour-overview__btn primary-button" id="program-tour" (click)="notificationService.showWarnMessage('Программа недоступна')">
           Программа тура
         </button>
       </div>
@@ -186,7 +186,7 @@
               </li>
             }
           </ul>
-          <button class="tour-offer__btn primary-button" id="size-program" (click)="messageService.showInfoMessage('Стоимость отправлена на почту')">
+          <button class="tour-offer__btn primary-button" id="size-program" (click)="notificationService.showInfoMessage('Стоимость отправлена на почту')">
             Стоимость программ
           </button>
         </div>
@@ -218,7 +218,7 @@
           </div>
         }
       </div>
-      <button class="popular-directions__button primary-button" (click)="messageService.showSuccessMessage('Направления получены')">
+      <button class="popular-directions__button primary-button" (click)="notificationService.showSuccessMessage('Направления получены')">
         Рейтинг направлений
       </button>
     </section>
@@ -251,28 +251,31 @@
         }
       </div>
       <div class="blog-actions">
-        <button class="btn-more primary-button" (click)="messageService.showErrorMessage('Материалы недоступны')">Другие материалы</button>
+        <button class="btn-more primary-button" (click)="notificationService.showErrorMessage('Материалы недоступны')">Другие материалы</button>
       </div>
       </section>
     </div>
     <div class="notification-service">
-      @for (message of messageService.messages; track $index) {
+      @for (message of notificationService.messages; track message ) {
         <ng-container [ngTemplateOutlet]="serviceMessage" [ngTemplateOutletContext]="{ $implicit: message, serviceIndex: $index }">
         </ng-container>
       }
     </div>
     }
 
-    <ng-template #serviceMessage let-message let-id="serviceIndex">
+    <ng-template #serviceMessage let-message>
       <div class="notification">
         <div class="notification__left">
-          <img src="assets/img/service-icon.svg" alt="service-icon" class="notification__icon">
+          <img
+          src="assets/img/service-icon.svg"
+          alt="service-icon"
+          class="notification__icon">
           <div class="notification__text">
-            <h6 class="notification__title">{{ message.title }}</h6>
+            <h6 class="notification__title">{{ message.type }}</h6>
             <span class="notification__desc">{{ message.content }}</span>
           </div>
         </div>
-        <button class="notification__close" (click)="messageService.closeMessage(message.id)">
+        <button class="notification__close" (click)="notificationService.closeMessage(message)">
           <img src="assets/img/close-btn-icon.svg" alt="close">
         </button>
       </div>
