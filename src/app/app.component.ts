@@ -24,7 +24,7 @@ export class AppComponent {
 
   companyName: string = 'румтибет';
   widget: WidgetType = 'counter';
-  text!: string ;
+  text!: string;
   cities: string [] = ['Almaty', 'Astana', 'Aktau'];
   participants: string [] = ['2 участника', '4 участника', '6 участника'];
 
@@ -119,7 +119,7 @@ export class AppComponent {
     setInterval(() => {
       this.currentTime = new Date();
     }, 1000);
-}
+  }
 
   private isPrimaryColor(color: Color): boolean {
     const primaryColors: Color[] = [Color.RED, Color.GREEN, Color.BLUE];
@@ -138,6 +138,6 @@ export class AppComponent {
 
   toggleWidget(widget: WidgetType): void {
     this.widget = widget;
-}
+  }
 
 }
