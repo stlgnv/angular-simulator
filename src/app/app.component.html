@@ -28,20 +28,31 @@
           </span>
         } @else {
           <div class="header__counter-wrapper">
-          <button (click)="clickCount = clickCount + 1" class="header__counter-btn" id="counter-increment">+</button>
+          <button
+            (click)="clickCount = clickCount + 1"
+            class="header__counter-btn"
+            id="counter-increment"
+          >
+            +
+          </button>
           <span class="header__counter">
             {{ clickCount }}
           </span>
-          <button (click)="clickCount > 0 ? clickCount = clickCount - 1 : null"
-                  [disabled]="clickCount === 0"
-                  class="header__counter-btn header__counter-minus"
-                  id="counter-decrement">
-                  -
+          <button
+            (click)="clickCount > 0 ? clickCount = clickCount - 1 : null"
+            [disabled]="clickCount === 0"
+            class="header__counter-btn header__counter-minus"
+            id="counter-decrement"
+          >
+            -
           </button>
         </div>
         }
-        <button (click)="toggleWidget()" class="header__counter-time" id="toggle-date-button">
-            {{ widget === 'date' ? 'Скрыть дату' : 'Показать дату' }}
+        <button
+          (click)="toggleWidget(widget === 'date' ? 'counter' : 'date')"
+          class="header__counter-time" id="toggle-date-button"
+        >
+          {{ widget === 'date' ? 'Скрыть дату' : 'Показать дату' }}
         </button>
       </div>
     </header>
@@ -60,7 +71,8 @@
                 class="hero__input"
                 id="location"
                 name="location"
-                [(ngModel)]="selectedLocation">
+                [(ngModel)]="selectedLocation"
+              >
 
                 <option [ngValue]="null" disabled class="hero__option">
                   Локация для тура
@@ -84,7 +96,8 @@
                 class="hero__input"
                 name="date"
                 id="tour-date"
-                [(ngModel)]="selectedDate">
+                [(ngModel)]="selectedDate"
+              >
               <label class="hero__label" for="tour-date">
                 укажите дату
               </label>
@@ -95,7 +108,8 @@
                 class="hero__input"
                 id="participants"
                 name="participants"
-                [(ngModel)]="selectedParticipants">
+                [(ngModel)]="selectedParticipants"
+              >
                 <option [ngValue]="null" disabled class="hero__option">
                     Участники
                 </option>
@@ -114,7 +128,8 @@
             <button
               class="hero__search-button primary-button"
               id="search-tour"
-              [disabled]="!selectedLocation || !selectedDate || !selectedParticipants">
+              [disabled]="!selectedLocation || !selectedDate || !selectedParticipants"
+            >
               Найти программу
             </button>
           </form>
@@ -125,7 +140,8 @@
               [(ngModel)]="text"
               placeholder="Живой инпут"
               class="hero__live-input"
-              id="live-input">
+              id="live-input"
+            >
             <span class="hero__arrow"></span>
             <p class="hero__live-input output">
               {{ text || 'Введенный текст' }}
@@ -152,7 +168,11 @@
           Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.
         </p>
 
-        <button class="tour-overview__btn primary-button" id="program-tour" (click)="notificationService.showWarnMessage('Программа недоступна')">
+        <button
+          class="tour-overview__btn primary-button"
+          id="program-tour"
+          (click)="notificationService.showWarnMessage('Программа недоступна')"
+        >
           Программа тура
         </button>
       </div>
@@ -171,10 +191,11 @@
             @for (offer of tourOffers; track offer.id) {
               <li class="tour-offer__item">
                 <img
-                    class="tour-offer__icon"
-                    [src]="'assets/img/' + offer.icon + '.svg'"
-                    alt="icon"
-                    [ngClass]="'tour-offer__icon--' + offer.icon">
+                  class="tour-offer__icon"
+                  [src]="'assets/img/' + offer.icon + '.svg'"
+                  alt="icon"
+                  [ngClass]="'tour-offer__icon--' + offer.icon"
+                >
                 <div>
                   <h4 class="tour-offer__item-title">
                     {{ offer.title }}
@@ -186,7 +207,11 @@
               </li>
             }
           </ul>
-          <button class="tour-offer__btn primary-button" id="size-program" (click)="notificationService.showInfoMessage('Стоимость отправлена на почту')">
+          <button
+            class="tour-offer__btn primary-button"
+            id="size-program"
+            (click)="notificationService.showInfoMessage('Стоимость отправлена на почту')"
+          >
             Стоимость программ
           </button>
         </div>
@@ -206,7 +231,11 @@
       <div class="popular-directions__cards">
         @for (card of galleryCards; track card.id) {
           <div class="popular-directions__card">
-            <img [src]="'assets/img/' + card.image + '.png'" alt="lake-mountains" class="popular-directions__card-img">
+            <img
+              [src]="'assets/img/' + card.image + '.png'"
+              alt="lake-mountains"
+              class="popular-directions__card-img"
+            >
             <span class="popular-directions__card-rating">
               ⭐ {{ card.rating.toFixed(1) }}
             </span>
@@ -218,7 +247,10 @@
           </div>
         }
       </div>
-      <button class="popular-directions__button primary-button" (click)="notificationService.showSuccessMessage('Направления получены')">
+      <button
+        class="popular-directions__button primary-button"
+        (click)="notificationService.showSuccessMessage('Направления получены')"
+      >
         Рейтинг направлений
       </button>
     </section>
@@ -251,13 +283,18 @@
         }
       </div>
       <div class="blog-actions">
-        <button class="btn-more primary-button" (click)="notificationService.showErrorMessage('Материалы недоступны')">Другие материалы</button>
+        <button
+          class="btn-more primary-button"
+          (click)="notificationService.showErrorMessage('Материалы недоступны')"
+        >
+          Другие материалы
+        </button>
       </div>
       </section>
     </div>
     <div class="notification-service">
       @for (message of notificationService.messages; track message ) {
-        <ng-container [ngTemplateOutlet]="serviceMessage" [ngTemplateOutletContext]="{ $implicit: message, serviceIndex: $index }">
+        <ng-container [ngTemplateOutlet]="serviceMessage" [ngTemplateOutletContext]="{ $implicit: message }">
         </ng-container>
       }
     </div>
@@ -267,9 +304,10 @@
       <div class="notification">
         <div class="notification__left">
           <img
-          src="assets/img/service-icon.svg"
-          alt="service-icon"
-          class="notification__icon">
+            src="assets/img/service-icon.svg"
+            alt="service-icon"
+            class="notification__icon"
+          >
           <div class="notification__text">
             <h6 class="notification__title">{{ message.type }}</h6>
             <span class="notification__desc">{{ message.content }}</span>

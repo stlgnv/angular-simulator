@@ -23,7 +23,7 @@ export class AppComponent {
   notificationService: NotificationService = inject(NotificationService);
 
   companyName: string = 'румтибет';
-  widget: WidgetType = 'date';
+  widget: WidgetType = 'counter';
   text!: string ;
   cities: string [] = ['Almaty', 'Astana', 'Aktau'];
   participants: string [] = ['2 участника', '4 участника', '6 участника'];
@@ -136,8 +136,8 @@ export class AppComponent {
     this.localStorageService.setValues('visits', count + 1);
   }
 
-  toggleWidget(): void {
-    this.widget = this.widget === 'date' ? 'counter' : 'date';
+  toggleWidget(widget: WidgetType): void {
+    this.widget = widget;
 }
 
 }
