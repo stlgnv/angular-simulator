@@ -128,12 +128,12 @@ export class AppComponent {
 
   private saveLastVisit(): void {
     const now: string = new Date().toISOString();
-    this.localStorageService.setValues('last-visit', now)
+    this.localStorageService.setValue('last-visit', now)
   }
 
   private saveVisitCount(): void {
-    const count: number = this.localStorageService.getValues<number>('visits') ?? 0;
-    this.localStorageService.setValues('visits', count + 1);
+    const count: number = this.localStorageService.getValue<number>('visits') ?? 0;
+    this.localStorageService.setValue('visits', count + 1);
   }
 
   toggleWidget(widget: WidgetType): void {
