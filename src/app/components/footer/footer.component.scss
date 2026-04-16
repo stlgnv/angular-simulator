@@ -1,0 +1,43 @@
+  .newsletter {
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+  }
+
+  .newsletter-card {
+    width: 900px;
+    background: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    position: relative;
+    top: -40px;
+  }
+
+  .right input {
+    padding: 10px;
+    margin-right: 10px;
+  }
+
+  .right button {
+    background: #0f3d3d;
+    color: white;
+    padding: 10px;
+    border: none;
+  }
+
+  .footer {
+    background: #0b2b2b;
+    color: white;
+    padding: 60px 0;
+  }
+
+  .footer-grid {
+    width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+  }

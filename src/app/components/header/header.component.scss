@@ -1,0 +1,76 @@
+.header {
+  background-color: #18121e80;
+  color: #fff;
+
+  &__nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 24px;
+  }
+
+  &__logo {
+    font-weight: bold;
+    font-size: 22px;
+  }
+
+  &__logo-desc {
+    text-transform: uppercase;
+    letter-spacing: 4px;
+  }
+
+  &__logo-desc::before {
+    content: '';
+    background-image: url('/assets/img/company_logo.png');
+    display: block;
+    width: 138px;
+    height: 29px;
+    margin-bottom: 8px;
+  }
+
+  &__menu {
+    display: flex;
+    gap: 24px;
+  }
+
+  &__button {
+    color: var(--secondary-color);
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+  }
+
+  &__button:hover {
+    background-color: #e5e7eb;
+  }
+
+  &__timer-wrapper {
+    display: flex;
+    justify-content: flex-end;
+    padding-bottom: 18px;
+    gap: 30px;
+    align-items: center;
+  }
+
+  &__timer {
+    font-size: 18px;
+    color: var(--shadow-light);
+  }
+
+  &__counter-btn {
+    background-color: transparent;
+    border: none;
+    color: var(--shadow-light);
+  }
+
+   &__counter-minus {
+    margin-right: 50px;
+   }
+
+   &__counter-time {
+    border-radius: 4px;
+    padding: 8px 16px;
+    border: none;
+    color: var(--secondary-color);
+   }
+}

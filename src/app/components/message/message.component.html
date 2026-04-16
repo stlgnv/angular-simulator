@@ -1,0 +1,25 @@
+<ng-template #serviceMessage let-message>
+  <div class="notification">
+    <div class="notification__left">
+      <img
+        src="assets/img/service-icon.svg"
+        alt="service-icon"
+        class="notification__icon"
+      >
+      <div class="notification__text">
+        <h6 class="notification__title">{{ message.type }}</h6>
+        <span class="notification__desc">{{ message.content }}</span>
+      </div>
+    </div>
+    <button class="notification__close" (click)="closeMessage(message)" id="close-button" type="submit">
+      <img src="assets/img/close-btn-icon.svg" alt="close">
+    </button>
+  </div>
+</ng-template>
+
+<div class="notification-service">
+  @for (message of notificationService.getMessage(); track message ) {
+    <ng-container [ngTemplateOutlet]="serviceMessage" [ngTemplateOutletContext]="{ $implicit: message }">
+    </ng-container>
+  }
+</div>
