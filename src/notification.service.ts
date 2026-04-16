@@ -26,7 +26,7 @@ export class NotificationService {
   }
 
   closeMessage(message: INotification): void {
-    this.messages = this.messages.filter(m => m !== message);
+    this.messages = this.messages.filter((m: INotification) => m !== message);
   }
 
   private addMessage(content: string, type: Notification): void {
