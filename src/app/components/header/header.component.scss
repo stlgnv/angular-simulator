@@ -33,6 +33,11 @@
     gap: 24px;
   }
 
+  .active-link {
+    color: var(--dark-color);
+    text-decoration: underline;
+  }
+
   &__button {
     color: var(--secondary-color);
     padding: 8px 16px;

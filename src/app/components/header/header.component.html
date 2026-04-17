@@ -4,12 +4,12 @@
       <span class="header__logo-desc">{{ companyName }}</span>
     </div>
     <div class="header__menu">
-      <a id="home" href="#">Главная</a>
-      <a id="about-guide" href="#">Про гида</a>
-      <a id="tour-program" href="#">Программа тура</a>
-      <a id="pricing" href="#">Стоимость</a>
-      <a id="blog" href="#">Блог</a>
-      <a id="contacts" href="#">Контакты</a>
+      @for (headerMenuItem of headerMenuItems; track headerMenuItem.id) {
+        <a
+          [routerLink]="headerMenuItem.path"
+          routerLinkActive ="active-link"
+          [routerLinkActiveOptions]="{ exact: headerMenuItem.exact }">{{ headerMenuItem.label }}</a>
+      }
     </div>
     <button class="header__button" id="consultation-button">
       Консультация
@@ -23,25 +23,25 @@
       </span>
     } @else {
       <div class="header__counter-wrapper">
-      <button
-        (click)="clickCount = clickCount + 1"
-        class="header__counter-btn"
-        id="counter-increment"
-      >
-        +
-      </button>
-      <span class="header__counter">
-        {{ clickCount }}
-      </span>
-      <button
-        (click)="clickCount > 0 ? clickCount = clickCount - 1 : null"
-        [disabled]="clickCount === 0"
-        class="header__counter-btn header__counter-minus"
-        id="counter-decrement"
-      >
-        -
-      </button>
-    </div>
+        <button
+          (click)="clickCount = clickCount + 1"
+          class="header__counter-btn"
+          id="counter-increment"
+        >
+          +
+        </button>
+        <span class="header__counter">
+          {{ clickCount }}
+        </span>
+        <button
+          (click)="clickCount > 0 ? clickCount = clickCount - 1 : null"
+          [disabled]="clickCount === 0"
+          class="header__counter-btn header__counter-minus"
+          id="counter-decrement"
+        >
+          -
+        </button>
+      </div>
     }
     <button
       (click)="toggleWidget(widget === 'date' ? 'counter' : 'date')"

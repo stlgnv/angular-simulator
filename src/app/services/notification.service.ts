@@ -1,13 +1,25 @@
 import { Injectable } from '@angular/core';
-import { INotification } from './app/interfaces/INotification';
-import { Notification } from './enums/Notification';
+import { INotification } from '../interfaces/INotification';
+import { Notification } from '../../enums/Notification';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NotificationService {
 
-  messages: INotification[] = [];
+  private messages: INotification[] = [];
+
+  getMessage(): INotification[] {
+    return this.messages
+  }
+
+  private addMessage(content: string, type: Notification): void {
+    const newMessage: INotification = { content, type };
+    this.messages = [newMessage, ...this.messages];
+    setTimeout(() => {
+      this.closeMessage(newMessage);
+    }, 5000);
+  }
 
   showWarnMessage(content: string): void {
     this.addMessage(content, Notification.WARN);
@@ -27,14 +39,6 @@ export class NotificationService {
 
   closeMessage(message: INotification): void {
     this.messages = this.messages.filter(m => m !== message);
-  }
-
-  private addMessage(content: string, type: Notification): void {
-    const newMessage: INotification = { content, type };
-    this.messages = [newMessage, ...this.messages];
-    setTimeout(() => {
-      this.closeMessage(newMessage);
-    }, 5000);
   }
 
 }

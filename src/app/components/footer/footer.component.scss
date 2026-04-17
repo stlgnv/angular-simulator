@@ -1,11 +1,12 @@
-  .newsletter {
-    display: flex;
-    justify-content: center;
-    margin-top: 60px;
+.newsletter {
+  display: flex;
+  justify-content: center;
+
+  .newsletter__title {
+    font-size: 26px;
   }
 
   .newsletter-card {
-    width: 900px;
     background: white;
     display: flex;
     justify-content: space-between;
@@ -13,12 +14,40 @@
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     position: relative;
-    top: -40px;
+    top: 107px;
+  }
+
+  .newsletter__label {
+    display: block;
+  }
+
+  .small-text {
+    font-size: 14px;
+  }
+
+  .small-text a {
+    text-decoration: underline;
+  }
+
+  .newsletter__input {
+    margin-right: 16px;
+    border-radius: 4px;
+    background: #F3F5F4;
+    border: none;
+    padding: 12px;
+  }
+
+  .tag {
+    font-size: 18px;
+  }
+
+  .right {
+    margin-top: 40px;
+    flex: 1;
   }
 
   .right input {
-    padding: 10px;
-    margin-right: 10px;
+    margin-top: 8px;
   }
 
   .right button {
@@ -28,16 +57,84 @@
     border: none;
   }
 
-  .footer {
-    background: #0b2b2b;
-    color: white;
-    padding: 60px 0;
+  .left {
+    margin-top: 40px;
+    margin-left: 100px;
+    flex: 1;
+  }
+}
+
+.footer {
+  color: white;
+
+  .footer__wrapper {
+    background: var(--secondary-color);
   }
 
   .footer-grid {
-    width: 1100px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    display: flex;
+    gap: 80px;
+    align-items: baseline;
+    padding-top: 80px;
   }
+
+  .footer__col {
+    padding-top: 70px;
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer__arrow {
+    background: url('/assets/img/arrow-icon.svg') no-repeat center;
+    background-size: contain;
+    width: 5px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 4px;
+  }
+
+  .footer__list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 0;
+  }
+
+  .footer__item:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
+  .footer__title {
+    font-size: 20px;
+  }
+
+  .footer__contacts {
+    display: flex;
+    gap: 24px;
+  }
+
+  .footer__socials {
+    display: flex;
+    gap: 18px;
+    margin-top: 32px;
+  }
+
+  .footer__bottom {
+    background-color: var(--dark-color);
+    padding: 20px 0;
+    font-size: 14px;
+  }
+
+  .footer__bottom-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer__policy {
+    text-decoration: underline;
+  }
+}

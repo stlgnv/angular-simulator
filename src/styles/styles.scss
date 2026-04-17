@@ -1,7 +1,7 @@
-@use './fonts';
-@use './normalize';
-@use './button';
-@use './mixins';
+@use './base/fonts';
+@use './base/normalize';
+@use './components/button';
+@use './abstracts/mixins';
 
 * {
   font-family: 'Nunito Sans', sans-serif;
@@ -31,4 +31,13 @@ button {
 
 li {
   list-style: none;
+}
+
+.section-subtitle {
+  color: var(--yellow-color);
+  font-size: 24px;
+}
+
+.section-title {
+  @include mixins.title;
 }
