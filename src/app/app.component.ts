@@ -34,7 +34,7 @@ export class AppComponent {
 
   private saveLastVisit(): void {
     const now: string = new Date().toISOString();
-    this.localStorageService.setValue('last-visit', now)
+    this.localStorageService.setValue('last-visit', now);
   }
 
   private saveVisitCount(): void {
