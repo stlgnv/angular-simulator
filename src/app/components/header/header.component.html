@@ -6,9 +6,13 @@
     <div class="header__menu">
       @for (headerMenuItem of headerMenuItems; track headerMenuItem.id) {
         <a
+          class="header__menu-item"
           [routerLink]="headerMenuItem.path"
-          routerLinkActive ="active-link"
-          [routerLinkActiveOptions]="{ exact: headerMenuItem.exact }">{{ headerMenuItem.label }}</a>
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: headerMenuItem.exact }"
+        >
+          {{ headerMenuItem.label }}
+        </a>
       }
     </div>
     <button class="header__button" id="consultation-button">

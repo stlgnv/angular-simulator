@@ -5,7 +5,6 @@ import { IGallery } from '../../interfaces/IGallery';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IArticle } from '../../interfaces/IArticle';
-import { IPhoto } from '../../interfaces/IPhoto';
 
 @Component({
   selector: 'app-home-page',
@@ -101,31 +100,6 @@ export class HomePageComponent {
     }
   ]
 
-  galleryPhotos: IPhoto[] = [
-    {
-      src: 'aerostat',
-      className: 'aerostat'
-    },
-    {
-      src: 'map',
-      className: 'map'
-    },
-    {
-      src: 'dubai',
-      className: 'dubai'
-    },
-    {
-      src: 'coast',
-      className: 'coast'
-    },
-    {
-      src: 'grand-canyon',
-      className: 'grand-canyon'
-    },
-    {
-      src: 'explorer-desc',
-      className: 'explorer-desc'
-    }
-  ]
+  galleryPhotos: string[] = ['air-balloons', 'travel-essentials-flatlay', 'burj-al-arab-dubai', 'coast', 'grand-canyon', 'explorer-desc'];
 
 }

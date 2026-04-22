@@ -17,6 +17,7 @@
   &__logo-desc {
     text-transform: uppercase;
     letter-spacing: 4px;
+    font-weight: 700;
   }
 
   &__logo-desc::before {
@@ -31,6 +32,10 @@
   &__menu {
     display: flex;
     gap: 24px;
+  }
+
+  &__menu-item {
+    font-weight: 600;
   }
 
   .active-link {

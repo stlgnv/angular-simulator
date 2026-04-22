@@ -241,9 +241,9 @@
     <h3 class="section-title">Делимся впечатлениями</h3>
 
     <div class="gallery-grid">
-      @for (photo of galleryPhotos; track photo.src) {
-        <div class="gallery-item" [ngClass]="photo.className">
-          <img [src]="'assets/img/' + photo.src + '.png'">
+      @for (photo of galleryPhotos; track photo) {
+        <div class="gallery-item" [ngClass]="photo">
+          <img [src]="'assets/img/' + photo + '.png'">
         </div>
       }
     </div>

@@ -19,10 +19,12 @@
 
   .newsletter__label {
     display: block;
+    font-weight: 600;
   }
 
   .small-text {
     font-size: 14px;
+    font-weight: 600;
   }
 
   .small-text a {
@@ -100,6 +102,7 @@
     flex-direction: column;
     gap: 16px;
     padding: 0;
+    font-weight: 400;
   }
 
   .footer__item:hover {
@@ -109,6 +112,11 @@
 
   .footer__title {
     font-size: 20px;
+    font-weight: 700;
+  }
+
+  .footer__text {
+    font-weight: 400;
   }
 
   .footer__contacts {

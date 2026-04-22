@@ -14,8 +14,8 @@ export class MessageComponent {
 
   notificationService: NotificationService = inject(NotificationService);
 
-  closeMessage(message: INotification) {
-    this.notificationService.closeMessage(message);
+  closeMessage(id: number) {
+    this.notificationService.closeMessage(id);
   }
 
 }

@@ -13,14 +13,6 @@ export class NotificationService {
     return this.messages
   }
 
-  private addMessage(content: string, type: Notification): void {
-    const newMessage: INotification = { content, type };
-    this.messages = [newMessage, ...this.messages];
-    setTimeout(() => {
-      this.closeMessage(newMessage);
-    }, 5000);
-  }
-
   showWarnMessage(content: string): void {
     this.addMessage(content, Notification.WARN);
   }
@@ -37,8 +29,19 @@ export class NotificationService {
     this.addMessage(content, Notification.INFO);
   }
 
-  closeMessage(message: INotification): void {
-    this.messages = this.messages.filter(m => m !== message);
+  closeMessage(id: number): void {
+    this.messages = this.messages.filter((m: INotification) => m.id !== id);
+  }
+
+  private addMessage(content: string, type: Notification): void {
+    const id: number = Date.now();
+
+    const newMessage: INotification = { content, type, id };
+    this.messages = [newMessage, ...this.messages];
+
+    setTimeout(() => {
+      this.closeMessage(id);
+    }, 5000);
   }
 
 }

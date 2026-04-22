@@ -23,7 +23,7 @@ export class HeaderComponent {
     {
       id: 1,
       label: 'Главная',
-      path: '/home',
+      path: '',
       exact: true
     },
     {
