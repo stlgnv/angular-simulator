@@ -1,0 +1,253 @@
+<main>
+  <section class="hero">
+    <div class="container">
+      <h1 class="hero__title">
+        насладись прогулкой в горах <br />
+        с командой единомышленников
+      </h1>
+
+      <form class="hero__search container">
+        <div class="hero__field">
+          <select
+            class="hero__input"
+            id="location"
+            name="location"
+            [(ngModel)]="selectedLocation"
+          >
+
+            <option [ngValue]="null" disabled class="hero__option">
+              Локация для тура
+            </option>
+
+            @for (city of cities; track $index) {
+              <option [ngValue]="city" class="hero__option">
+                {{ city }}
+              </option>
+            }
+          </select>
+
+          <label class="hero__label" for="location">
+            выберите из списка
+          </label>
+        </div>
+
+        <div class="hero__field">
+          <input
+            type="date"
+            class="hero__input"
+            name="date"
+            id="tour-date"
+            [(ngModel)]="selectedDate"
+          >
+          <label class="hero__label" for="tour-date">
+            укажите дату
+          </label>
+        </div>
+
+        <div class="hero__field">
+          <select
+            class="hero__input"
+            id="participants"
+            name="participants"
+            [(ngModel)]="selectedParticipants"
+          >
+            <option [ngValue]="null" disabled class="hero__option">
+                Участники
+            </option>
+
+            @for (participant of participants; track $index) {
+              <option [ngValue]="participant" class="hero__option">
+                {{ participant }}
+              </option>
+            }
+          </select>
+          <label class="hero__label" for="participants">
+            выберите из списка
+          </label>
+        </div>
+
+        <button
+          class="hero__search-button primary-button"
+          id="search-tour"
+          [disabled]="!selectedLocation || !selectedDate || !selectedParticipants"
+        >
+          Найти программу
+        </button>
+      </form>
+
+      <div class="hero__live-inputs">
+        <input
+          type="text"
+          [(ngModel)]="text"
+          placeholder="Живой инпут"
+          class="hero__live-input"
+          id="live-input"
+        >
+        <span class="hero__arrow"></span>
+        <p class="hero__live-input output">
+          {{ text || 'Введенный текст' }}
+        </p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="tour-overview container">
+  <div class="tour-overview__video">
+    <img src="assets/img/mountain_smoke.png" alt="mountains" class="tour-overview__video-bg">
+    <img src="assets/img/house.png" alt="house" class="tour-overview__video-overlay">
+    <img src="assets/img/play-icon.svg" alt="btn-play" class="tour-overview__video-play">
+  </div>
+
+  <div class="tour-overview__content">
+    <span class="section-subtitle">о нашем походе</span>
+    <h3 class="section-title">
+      Исследуйте все горные массивы мира вместе с нами
+    </h3>
+
+    <p class="tour-overview__text">
+      Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа Hampden-Sydney, штат Вирджиния, взял одно из самых странных слов в Lorem Ipsum, "consectetur" и занялся его поисками в классической латинской литературе.
+    </p>
+
+    <button
+      class="tour-overview__btn primary-button"
+      id="program-tour"
+      (click)="notificationService.showWarnMessage('Программа недоступна')"
+    >
+      Программа тура
+    </button>
+  </div>
+</section>
+
+<section class="tour-offer-wrapper">
+  <div class="tour-offer container">
+    <div class="tour-offer__content">
+      <span class="section-subtitle">наше предложение</span>
+      <h3 class="section-title">Лучшие программы для тебя</h3>
+      <p class="tour-offer__text">
+        Его корни уходят в один фрагмент классической латыни 45 года н.э., то есть более двух тысячелетий назад. Ричард МакКлинток, профессор латыни из колледжа.
+      </p>
+
+      <ul class="tour-offer__list">
+        @for (offer of tourOffers; track offer.id) {
+          <li class="tour-offer__item">
+            <img
+              class="tour-offer__icon"
+              [src]="'assets/img/' + offer.icon + '.svg'"
+              alt="icon"
+              [ngClass]="'tour-offer__icon--' + offer.icon"
+            >
+            <div>
+              <h4 class="tour-offer__item-title">
+                {{ offer.title }}
+              </h4>
+              <p class="tour-offer__item-text">
+                {{ offer.description }}
+              </p>
+            </div>
+          </li>
+        }
+      </ul>
+      <button
+        class="tour-offer__btn primary-button"
+        id="size-program"
+        (click)="notificationService.showInfoMessage('Стоимость отправлена на почту')"
+      >
+        Стоимость программ
+      </button>
+    </div>
+    <div class="tour-offer__media">
+      <img src="assets/img/lake.png" alt="lake" class="tour-offer__img">
+      <img src="assets/img/canyon.png" alt="canyon" class="tour-offer__img">
+      <img src="assets/img/snowmobile.png" alt="snowmobile" class="tour-offer__img">
+      <img src="assets/img/valley.png" alt="valley" class="tour-offer__img">
+    </div>
+  </div>
+</section>
+<section class="popular-directions container">
+  <div class="popular-directions__header">
+    <span class="section-subtitle">по версии отдыхающих</span>
+    <h3 class="section-title">Популярные направления</h3>
+  </div>
+  <div class="popular-directions__cards">
+    @for (card of galleryCards; track card.id) {
+      <div class="popular-directions__card">
+        <img
+          [src]="'assets/img/' + card.image + '.png'"
+          alt="lake-mountains"
+          class="popular-directions__card-img"
+        >
+        <span class="popular-directions__card-rating">
+          ⭐ {{ card.rating.toFixed(1) }}
+        </span>
+        <div class="popular-directions__card-content">
+          <h4 class="popular-directions__card-title">{{ card.title }}</h4>
+          <p class="popular-directions__card-description">{{ card.description }}</p>
+          <span class="popular-directions__card-price">{{ card.price }} $</span>
+        </div>
+      </div>
+    }
+  </div>
+  <button
+    class="popular-directions__button primary-button"
+    (click)="notificationService.showSuccessMessage('Направления получены')"
+  >
+    Рейтинг направлений
+  </button>
+</section>
+
+<div class="blog-section">
+  <section class="container">
+    <div class="blog-header">
+      <span class="section-subtitle">делимся впечатлениями</span>
+      <h3 class="section-title">Блог о путешествиях</h3>
+    </div>
+    <div class="blog-container">
+      @for (article of articles; track article.id) {
+        <article class="blog-card">
+          <div class="card-image">
+            <img [src]="'assets/img/' + article.image + '.jpg'" alt="italy">
+          </div>
+          <div class="card-content">
+            <h3 class="card-title">
+              {{ article.title }}
+            </h3>
+            <p class="card-text">
+              {{ article.description }}
+            </p>
+            <div class="card-footer">
+              <time class="date">01/04/2023</time>
+              <a href="#" class="read-more">читать статью</a>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+    <div class="blog-actions">
+      <button
+        class="btn-more primary-button"
+        (click)="notificationService.showErrorMessage('Материалы недоступны')"
+        id="load-more-blog"
+      >
+        Другие материалы
+      </button>
+    </div>
+  </section>
+</div>
+
+<section class="gallery">
+  <div class="container">
+    <span class="section-subtitle">фото-отчет</span>
+    <h3 class="section-title">Делимся впечатлениями</h3>
+
+    <div class="gallery-grid">
+      @for (photo of galleryPhotos; track photo) {
+        <div class="gallery-item" [ngClass]="photo">
+          <img [src]="'assets/img/' + photo + '.png'">
+        </div>
+      }
+    </div>
+
+    <button class="gallery-grid__button primary-button" id="pinterest-link">Наш pinterest</button>
+  </div>
+</section>

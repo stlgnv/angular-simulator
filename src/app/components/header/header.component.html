@@ -1,0 +1,57 @@
+<header class="header">
+  <nav class="header__nav container">
+    <div class="header__logo">
+      <span class="header__logo-desc">{{ companyName }}</span>
+    </div>
+    <div class="header__menu">
+      @for (headerMenuItem of headerMenuItems; track headerMenuItem.id) {
+        <a
+          class="header__menu-item"
+          [routerLink]="headerMenuItem.path"
+          routerLinkActive="active-link"
+          [routerLinkActiveOptions]="{ exact: headerMenuItem.exact }"
+        >
+          {{ headerMenuItem.label }}
+        </a>
+      }
+    </div>
+    <button class="header__button" id="consultation-button">
+      Консультация
+    </button>
+  </nav>
+
+  <div class="container header__timer-wrapper">
+    @if (widget === 'date') {
+      <span class="header__timer">
+        {{ currentTime | date: 'dd.MM.yyyy HH:mm:ss' }}
+      </span>
+    } @else {
+      <div class="header__counter-wrapper">
+        <button
+          (click)="clickCount = clickCount + 1"
+          class="header__counter-btn"
+          id="counter-increment"
+        >
+          +
+        </button>
+        <span class="header__counter">
+          {{ clickCount }}
+        </span>
+        <button
+          (click)="clickCount > 0 ? clickCount = clickCount - 1 : null"
+          [disabled]="clickCount === 0"
+          class="header__counter-btn header__counter-minus"
+          id="counter-decrement"
+        >
+          -
+        </button>
+      </div>
+    }
+    <button
+      (click)="toggleWidget(widget === 'date' ? 'counter' : 'date')"
+      class="header__counter-time" id="toggle-date-button"
+    >
+      {{ widget === 'date' ? 'Скрыть дату' : 'Показать дату' }}
+    </button>
+  </div>
+</header>
