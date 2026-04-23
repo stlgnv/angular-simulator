@@ -1,3 +1,12 @@
+<div class="notification-service">
+  @for (message of notificationService.getMessage(); track message ) {
+    <ng-container
+      [ngTemplateOutlet]="serviceMessage"
+      [ngTemplateOutletContext]="{ $implicit: message }"
+    ></ng-container>
+  }
+</div>
+
 <ng-template #serviceMessage let-message>
   <div class="notification">
     <div class="notification__left">
@@ -16,12 +25,3 @@
     </button>
   </div>
 </ng-template>
-
-<div class="notification-service">
-  @for (message of notificationService.getMessage(); track message ) {
-    <ng-container
-      [ngTemplateOutlet]="serviceMessage"
-      [ngTemplateOutletContext]="{ $implicit: message }"
-    ></ng-container>
-  }
-</div>

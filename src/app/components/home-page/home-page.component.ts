@@ -18,8 +18,8 @@ export class HomePageComponent {
   notificationService: NotificationService = inject(NotificationService);
 
   text!: string;
-  cities: string [] = ['Almaty', 'Astana', 'Aktau'];
-  participants: string [] = ['2 участника', '4 участника', '6 участника'];
+  cities: string[] = ['Almaty', 'Astana', 'Aktau'];
+  participants: string[] = ['2 участника', '4 участника', '6 участника'];
 
   selectedLocation: string | null = null;
   selectedDate: string | null = null;
