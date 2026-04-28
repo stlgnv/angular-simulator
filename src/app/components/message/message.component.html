@@ -1,5 +1,5 @@
 <div class="notification-service">
-  @for (message of notificationService.getMessage(); track message ) {
+  @for (message of notificationService.messages$ | async; track message.id ) {
     <ng-container
       [ngTemplateOutlet]="serviceMessage"
       [ngTemplateOutletContext]="{ $implicit: message }"

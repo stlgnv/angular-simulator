@@ -6,10 +6,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MessageComponent } from './components/message/message.component';
 import { LocalStorageService } from './services/local-storage.service';
 import { RouterOutlet } from "@angular/router";
+import { LoaderComponent } from './components/loader/loader.component';
 
 @Component({
   selector: 'app-root',
-  imports: [FormsModule, HeaderComponent, FooterComponent, MessageComponent, RouterOutlet],
+  imports: [FormsModule, HeaderComponent, FooterComponent, MessageComponent, RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
@@ -17,12 +18,7 @@ export class AppComponent {
 
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  isLoading: boolean = true;
-
   constructor() {
-    setTimeout(() => {
-      this.isLoading = false;
-    },2000)
     this.saveLastVisit();
     this.saveVisitCount();
   }
