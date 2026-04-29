@@ -7,8 +7,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PhonePipe implements PipeTransform {
 
   transform(phone: string): string {
-    const main = phone.split('x')[0];
-    const digits = main.replace(/\D/g, '');
+    const main: string = phone.split('x')[0];
+    const digits: string = main.replace(/\D/g, '');
     return '+' + digits;
   }
 

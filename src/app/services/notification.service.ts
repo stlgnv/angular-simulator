@@ -8,8 +8,8 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class NotificationService {
 
-  private readonly messagesSubject$: BehaviorSubject<INotification[]> = new BehaviorSubject<INotification[]>([]);
-  public readonly messages$: Observable<INotification[]> = this.messagesSubject$.asObservable();
+  private messagesSubject$: BehaviorSubject<INotification[]> = new BehaviorSubject<INotification[]>([]);
+  messages$: Observable<INotification[]> = this.messagesSubject$.asObservable();
 
   showWarnMessage(content: string): void {
     this.addMessage(content, Notification.WARN);
@@ -30,7 +30,7 @@ export class NotificationService {
   closeMessage(id: number): void {
     const updatedMessages: INotification[] = this.messagesSubject$
       .getValue()
-      .filter(msg => msg.id !== id);
+      .filter((msg: INotification) => msg.id !== id);
     this.messagesSubject$.next(updatedMessages);
   }
 

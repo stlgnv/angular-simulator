@@ -14,10 +14,10 @@ export class UserService {
   loaderService: LoaderService = inject(LoaderService);
   notificationService: NotificationService = inject(NotificationService);
 
-  private readonly usersSubject$: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
-  public readonly users$: Observable<IUser[]> = this.usersSubject$.asObservable();
+  private usersSubject$: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
+  users$: Observable<IUser[]> = this.usersSubject$.asObservable();
 
-  setUsers(user: IUser[]) {
+  setUsers(user: IUser[]): void {
     this.usersSubject$.next(user);
   }
 
