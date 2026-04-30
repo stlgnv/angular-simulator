@@ -1,1 +1,85 @@
-<p>users-page works!</p>
+<h2 class="users__title">Список Пользователей</h2>
+<div class="users">
+  @for (user of userService.users$ | async; track user.id) {
+    <div class="user-card">
+
+      <h2 class="user-card__name">{{ user.name }}</h2>
+      <span class="user-card__username">@{{ user.username }}</span>
+
+      <div class="user-card__section">
+        <div class="user-card__section-title">КОНТАКТЫ</div>
+
+        <div class="user-card__row">
+          <span>Эл. почта:</span>
+          <span class="accent">{{ user.email }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Телефон:</span>
+          <span>{{ user.phone | phone }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Веб-сайт:</span>
+          <span class="accent">{{ user.website }}</span>
+        </div>
+      </div>
+
+      <div class="user-card__section">
+        <div class="user-card__section-title">АДРЕС ПРОЖИВАНИЯ</div>
+
+        <div class="user-card__row">
+          <span>Город:</span>
+          <span>{{ user.address.city }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Улица:</span>
+          <span>{{ user.address.street }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Офис:</span>
+          <span>{{ user.address.suite }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Индекс:</span>
+          <span>{{ user.address.zipcode }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Координаты:</span>
+          <span>
+            <span class="chip">{{ user.address.geo.lat }}</span>
+            <span class="chip">{{ user.address.geo.lng }}</span>
+          </span>
+        </div>
+      </div>
+
+      <div class="user-card__section">
+        <div class="user-card__section-title">МЕСТО РАБОТЫ</div>
+
+        <div class="user-card__row">
+          <span>Компания:</span>
+          <span>{{ user.company.name }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Миссия:</span>
+          <span class="italic">{{ user.company.catchPhrase }}</span>
+        </div>
+
+        <div class="user-card__row">
+          <span>Специализация:</span>
+          <span>{{ user.company.bs }}</span>
+        </div>
+      </div>
+
+    </div>
+  } @empty {
+    <span class="empty-state">
+      Пользователи не найдены
+    </span>
+  }
+</div>

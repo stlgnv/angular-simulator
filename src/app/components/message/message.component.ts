@@ -1,11 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
-import { NgTemplateOutlet } from '@angular/common';
-import { INotification } from '../../interfaces/INotification';
+import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 
 @Component({
   selector: 'app-message',
-  imports: [NgTemplateOutlet],
+  imports: [NgTemplateOutlet, AsyncPipe],
   templateUrl: './message.component.html',
   styleUrl: './message.component.scss',
   standalone: true,
