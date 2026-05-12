@@ -21,7 +21,7 @@ export class UsersPageComponent {
 
   filterSubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  filterUsers$ = combineLatest([this.users$, this.filterSubject$]).pipe (
+  filterUsers$: Observable<IUser[]> = combineLatest([this.users$, this.filterSubject$]).pipe(
     map(([users, query]: [IUser[], string]): IUser[] => {
       const trimQuery: string = query.trim();
       if (!trimQuery) {

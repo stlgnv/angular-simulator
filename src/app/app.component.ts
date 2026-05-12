@@ -13,6 +13,7 @@ import { LoaderComponent } from './components/loader/loader.component';
   imports: [FormsModule, HeaderComponent, FooterComponent, MessageComponent, RouterOutlet, LoaderComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
+  standalone: true
 })
 export class AppComponent {
 
