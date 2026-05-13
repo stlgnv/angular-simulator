@@ -21,16 +21,18 @@ export class UsersPageComponent {
 
   filterSubject$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  filterUsers$: Observable<IUser[]> = combineLatest([this.users$, this.filterSubject$]).pipe(
-    map(([users, query]: [IUser[], string]): IUser[] => {
-      const trimQuery: string = query.trim();
-      if (!trimQuery) {
-        return users;
-      }
-
-      return users.filter((user: IUser) =>
-        user.name?.toLowerCase().includes(trimQuery.toLowerCase()) ?? false
-      );
+  filterUsers$: Observable<IUser[]> = combineLatest([
+    this.users$,
+    this.filterSubject$
+  ]).pipe(
+      map(([users, query]: [IUser[], string]): IUser[] => {
+        const trimQuery: string = query.trim();
+        if (!trimQuery) {
+          return users;
+        }
+        return users.filter((user: IUser) =>
+          user.name?.toLowerCase().includes(trimQuery.toLowerCase()) ?? false
+        );
     })
   );
 

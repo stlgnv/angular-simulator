@@ -16,7 +16,7 @@ export class UserService {
   notificationService: NotificationService = inject(NotificationService);
   localStorageService: LocalStorageService = inject(LocalStorageService);
 
-  private readonly USERS_KEY = 'users_data';
+  private readonly USERS_KEY: string = 'users_data';
 
   private usersSubject$: BehaviorSubject<IUser[]> = new BehaviorSubject<IUser[]>([]);
   users$: Observable<IUser[]> = this.usersSubject$.asObservable();
@@ -27,8 +27,7 @@ export class UserService {
   }
 
   deleteUser(id: number): void {
-    const updatedUsers = this.usersSubject$
-      .getValue()
+    const updatedUsers: IUser[] = this.getUsers()
       .filter((user: IUser) => user.id !== id);
     this.setUsers(updatedUsers);
   }
@@ -43,17 +42,14 @@ export class UserService {
   }
 
   loadUsers(): Observable<IUser[]> {
-    const LocalUsers = this.localStorageService.getValue<IUser[]>(this.USERS_KEY);
-    if (LocalUsers && LocalUsers.length > 0) {
-      this.setUsers(LocalUsers);
-      return of(LocalUsers);
+    const localUsers: IUser[] | null = this.localStorageService.getValue<IUser[]>(this.USERS_KEY);
+    if (localUsers && localUsers.length > 0) {
+      this.setUsers(localUsers);
+      return of(localUsers);
     }
     this.loaderService.showLoader();
     return this.usersApi.getUsers()
       .pipe(
-        tap((users: IUser[]) => {
-          this.setUsers(users)
-        }),
         catchError(() => {
           this.notificationService.showErrorMessage('Нет пользователей для отображения');
           return of([]);
