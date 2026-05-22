@@ -27,10 +27,10 @@
           <a href="tel:+71234567890" class="footer__link" id="footer-phone-link">+7 (123) 456-78-90</a>
         </div>
         <div class="footer__socials">
-          <a href="#"><img src="assets/img/tg-icon.svg" alt="Telegram"></a>
-          <a href="#"><img src="assets/img/vk-icon.svg" alt="VK"></a>
-          <a href="#"><img src="assets/img/pinterest-icon.svg" alt="Pinterest"></a>
-          <a href="#"><img src="assets/img/skype-icon.svg" alt="Skype"></a>
+          <fa-icon [icon]="faTelegram" size="xl"></fa-icon>
+          <fa-icon [icon]="faVk" size="xl"></fa-icon>
+          <fa-icon [icon]="faSkype" size="xl"></fa-icon>
+          <fa-icon [icon]="faPinterest" size="xl"></fa-icon>
         </div>
       </div>
 
@@ -39,7 +39,7 @@
         <ul class="footer__list">
           @for (link of footerLinks; track $index) {
             <li class="footer__item">
-              <span class="footer__arrow"></span>
+              <fa-icon [icon]='faArrowRight' class="footer__arrow"></fa-icon>
               {{ link }}
             </li>
           }
@@ -51,7 +51,7 @@
         <ul class="footer__list">
           @for (link of travelNotes; track $index) {
             <li class="footer__item">
-              <span class="footer__arrow"></span>
+              <fa-icon [icon]='faArrowRight' class="footer__arrow"></fa-icon>
               {{ link }}
             </li>
           }

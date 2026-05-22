@@ -5,10 +5,12 @@ import { IGallery } from '../../interfaces/IGallery';
 import { NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IArticle } from '../../interfaces/IArticle';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faArrowRight, faDollarSign, faPeopleLine, faPlay, faShieldHalved, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-page',
-  imports: [NgClass, FormsModule],
+  imports: [NgClass, FormsModule, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
   standalone: true,
@@ -17,6 +19,11 @@ export class HomePageComponent {
 
   notificationService: NotificationService = inject(NotificationService);
 
+  faArrowRight: IconDefinition = faArrowRight;
+  faPlay: IconDefinition = faPlay;
+  faPeopleLine: IconDefinition = faPeopleLine;
+  faShieldHalved: IconDefinition = faShieldHalved;
+  faDollarSign: IconDefinition = faDollarSign;
   text!: string;
   cities: string[] = ['Almaty', 'Astana', 'Aktau'];
   participants: string[] = ['2 участника', '4 участника', '6 участника'];
@@ -30,19 +37,19 @@ export class HomePageComponent {
       id: 1,
       title: 'Опытный гид',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'guide-icon',
+      icon: faPeopleLine,
     },
     {
       id: 2,
       title: 'Безопасный поход',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'safe-icon',
+      icon: faShieldHalved,
     },
     {
       id: 3,
       title: 'Лояльные цены',
       description: 'Для современного мира базовый вектор развития предполагает независимые способы реализации соответствующих условий активизации.',
-      icon: 'label-icon',
+      icon: faDollarSign,
     }
   ];
 

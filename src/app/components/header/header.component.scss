@@ -1,6 +1,11 @@
 .header {
-  background-color: #18121e80;
-  color: #fff;
+  background-color: var(--dark-basic-color);
+  color: var(--shadow-light);
+
+  .toggle-theme {
+    display: flex;
+    justify-content: center;
+  }
 
   &__nav {
     display: flex;
@@ -22,7 +27,7 @@
 
   &__logo-desc::before {
     content: '';
-    background-image: url('/assets/img/company_logo.png');
+    background-image: url('/assets/img/company_logo.svg');
     display: block;
     width: 138px;
     height: 29px;

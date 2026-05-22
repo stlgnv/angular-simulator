@@ -2,6 +2,7 @@
 @use './base/normalize';
 @use './components/button';
 @use './abstracts/mixins';
+@import "primeicons/primeicons.css";
 
 * {
   font-family: 'Nunito Sans', sans-serif;
@@ -12,7 +13,19 @@
   --white-color: #FFFFFF;
   --shadow-light: #FDFDFD;
   --yellow-color: #F2BE22;
-  --dark-color:#18121E;
+  --dark-color: #18121E;
+  --dark-basic-color: #18121e80;
+  --background-light-color: #F3F5F4;
+}
+
+.dark-theme {
+  --secondary-color: #1AFAFA;
+  --white-color: #a32f2f;
+  --shadow-light: #221212;
+  --yellow-color: #a59f8e;
+  --dark-color: #3f1669;
+  --dark-basic-color: #671bb380;
+  --background-light-color: #37a870;
 }
 
 .container {

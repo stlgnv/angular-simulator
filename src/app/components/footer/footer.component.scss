@@ -1,14 +1,13 @@
 .newsletter {
   display: flex;
   justify-content: center;
-  background-color: #F3F5F4;
 
   .newsletter__title {
     font-size: 26px;
   }
 
   .newsletter-card {
-    background: white;
+    background: var(--shadow-light);
     display: flex;
     justify-content: space-between;
     padding: 20px;
@@ -90,12 +89,9 @@
   }
 
   .footer__arrow {
-    background: url('/assets/img/arrow-icon.svg') no-repeat center;
-    background-size: contain;
     width: 5px;
     height: 10px;
-    display: inline-block;
-    margin-right: 4px;
+    margin-right: 7px;
   }
 
   .footer__list {

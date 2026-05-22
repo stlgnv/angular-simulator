@@ -1,7 +1,6 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IUser } from '../../../interfaces/IUser';
-import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-user-create',
@@ -12,6 +11,7 @@ import { NotificationService } from '../../../services/notification.service';
 export class UserCreateComponent {
 
   @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
+
 
   private fb: FormBuilder = inject(FormBuilder);
 
