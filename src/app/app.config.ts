@@ -5,17 +5,17 @@ import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
-import { ThemesName } from '../enums/ThemesName';
+import { Theme } from '../enums/Theme';
 
 type ThemePresetType = typeof Aura | typeof Lara | typeof Nora;
 
 const initThemePreset = (): ThemePresetType => {
-  const themeFromStorage: string | null = localStorage.getItem('theme');
-  const saveTheme: ThemesName = themeFromStorage ? JSON.parse(themeFromStorage) : ThemesName.AURA;
+  const themeFromStorage: Theme | null = localStorage.getItem('theme') as Theme | null;
+  const saveTheme: Theme = (themeFromStorage as Theme) ?? Theme.AURA;
 
   switch(saveTheme) {
-    case ThemesName.NORA: return Nora;
-    case ThemesName.LARA: return Lara;
+    case Theme.NORA: return Nora;
+    case Theme.LARA: return Lara;
     default: return Aura;
   }
 }

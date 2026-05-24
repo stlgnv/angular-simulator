@@ -6,7 +6,7 @@ import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 import { ITheme } from '../interfaces/ITheme';
 import { LocalStorageService } from './local-storage.service';
-import { ThemesName } from '../../enums/ThemesName';
+import { Theme } from '../../enums/Theme';
 
 @Injectable({
   providedIn: 'root',
@@ -17,15 +17,15 @@ export class ThemeService {
 
   readonly themes: ITheme[] = [
     {
-      name: ThemesName.AURA,
+      name: Theme.AURA,
       preset: Aura
     },
     {
-      name: ThemesName.LARA,
+      name: Theme.LARA,
       preset: Lara
     },
     {
-      name: ThemesName.NORA,
+      name: Theme.NORA,
       preset: Nora
     }
   ];
@@ -48,7 +48,7 @@ export class ThemeService {
   }
 
   private initThemeFromStorage(): ITheme {
-    const savedThemeName: string | null = this.localStorage.getValue('theme');
+    const savedThemeName: Theme | null = this.localStorage.getValue('theme');
     const foundTheme: ITheme | undefined = this.themes.find(theme => theme.name === savedThemeName);
     return foundTheme ?? this.themes[0];
   }
@@ -58,9 +58,11 @@ export class ThemeService {
     this.localStorage.setValue('dark-mode', isDarkMode);
   }
 
-  changeTheme(themeName: ThemesName): void {
-    const foundTheme = this.themes.find(t => t.name === themeName);
-    if (!foundTheme) return;
+  changeTheme(themeName: Theme): void {
+    const foundTheme: ITheme | undefined = this.themes.find(
+      (t: ITheme) => t.name === themeName);
+    if (!foundTheme) 
+      return;
 
     this.themeSubject$.next(foundTheme);
     usePreset(foundTheme.preset);
