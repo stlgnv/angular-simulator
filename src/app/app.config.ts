@@ -10,8 +10,8 @@ import { Theme } from '../enums/Theme';
 type ThemePresetType = typeof Aura | typeof Lara | typeof Nora;
 
 const initThemePreset = (): ThemePresetType => {
-  const themeFromStorage: Theme | null = localStorage.getItem('theme') as Theme | null;
-  const saveTheme: Theme = (themeFromStorage as Theme) ?? Theme.AURA;
+  const themeFromStorage: Theme | null = localStorage.getItem('theme') as Theme;
+  const saveTheme: Theme = themeFromStorage ?? Theme.AURA;
 
   switch(saveTheme) {
     case Theme.NORA: return Nora;
