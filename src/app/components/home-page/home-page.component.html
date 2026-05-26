@@ -83,7 +83,7 @@
           class="hero__live-input"
           id="live-input"
         >
-        <span class="hero__arrow"></span>
+        <fa-icon [icon]='faArrowRight' class="hero__arrow"></fa-icon>
         <p class="hero__live-input output">
           {{ text || 'Введенный текст' }}
         </p>
@@ -96,7 +96,7 @@
   <div class="tour-overview__video">
     <img src="assets/img/mountain_smoke.png" alt="mountains" class="tour-overview__video-bg">
     <img src="assets/img/house.png" alt="house" class="tour-overview__video-overlay">
-    <img src="assets/img/play-icon.svg" alt="btn-play" class="tour-overview__video-play">
+    <fa-icon [icon]='faPlay' class="tour-overview__video-play"></fa-icon>
   </div>
 
   <div class="tour-overview__content">
@@ -131,12 +131,7 @@
       <ul class="tour-offer__list">
         @for (offer of tourOffers; track offer.id) {
           <li class="tour-offer__item">
-            <img
-              class="tour-offer__icon"
-              [src]="'assets/img/' + offer.icon + '.svg'"
-              alt="icon"
-              [ngClass]="'tour-offer__icon--' + offer.icon"
-            >
+             <fa-icon [icon]="offer.icon" class="tour-offer__icon" size="xl"></fa-icon>
             <div>
               <h4 class="tour-offer__item-title">
                 {{ offer.title }}
