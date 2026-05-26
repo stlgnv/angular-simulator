@@ -11,9 +11,9 @@ type ThemePresetType = typeof Aura | typeof Lara | typeof Nora;
 
 const initThemePreset = (): ThemePresetType => {
   const themeFromStorage: Theme | null = localStorage.getItem('theme') as Theme;
-  const saveTheme: Theme = themeFromStorage ?? Theme.AURA;
+  const savedTheme: Theme = themeFromStorage ?? Theme.AURA;
 
-  switch(saveTheme) {
+  switch(savedTheme) {
     case Theme.NORA: return Nora;
     case Theme.LARA: return Lara;
     default: return Aura;

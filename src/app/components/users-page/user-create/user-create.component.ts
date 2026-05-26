@@ -12,7 +12,6 @@ export class UserCreateComponent {
 
   @Output() createUser: EventEmitter<IUser> = new EventEmitter<IUser>();
 
-
   private fb: FormBuilder = inject(FormBuilder);
 
   userForm: FormGroup = this.fb.group({
