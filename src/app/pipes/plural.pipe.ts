@@ -14,18 +14,18 @@ export class PluralPipe implements PipeTransform {
     const lastOne: number = num % 10;
 
     if (lastTwo >= 11 && lastTwo <= 14) {
-      return many;
+      return value + ' ' + many;
     }
 
     if (lastOne === 1) {
-      return one;
+      return value + ' ' + one;
     }
 
     if (lastOne >= 2 && lastOne <= 4) {
-      return few;
+      return value + ' ' + few;
     }
 
-    return many;
+    return value + ' ' + many;
   }
 
 }
