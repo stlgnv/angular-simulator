@@ -1,10 +1,13 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { IUser } from '../../../interfaces/IUser';
-import { PhonePipe } from '../../../pipes/phone.pipe';
+import { UpperCasePipe } from '@angular/common';
+import { PhoneFormatPipe } from '../../../pipes/phone-format.pipe';
+import { GradientBorderDirective } from '../../../directives/gradient-border.directive';
+import { BoldHoverDirective } from '../../../directives/bold-hover.directive';
 
 @Component({
   selector: 'app-user-card',
-  imports: [PhonePipe],
+  imports: [UpperCasePipe, PhoneFormatPipe, GradientBorderDirective, BoldHoverDirective],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
   standalone: true

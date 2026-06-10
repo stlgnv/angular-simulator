@@ -3,63 +3,63 @@
   <form class="user-form" [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="create-user__field">
       <label for="create-user__name" class="create-user__label">Имя</label>
-      <input id="create-user__name" class="create-user__input" type="text" placeholder="Введите имя" formControlName="name">
+      <input id="create-user__name" class="create-user__input" type="text" placeholder="Введите имя" formControlName="name" appGradientBorder>
     </div>
     <div class="create-user__field">
       <label for="create-user__login" class="create-user__label">Логин</label>
-      <input id="create-user__login" class="create-user__input" type="text" placeholder="Введите логин" formControlName="username">
+      <input id="create-user__login" class="create-user__input" type="text" placeholder="Введите логин" formControlName="username" appGradientBorder>
     </div>
     <div class="create-user__field">
       <label for="create-user__email" class="create-user__label">Эмайл</label>
-      <input id="create-user__email" class="create-user__input" type="text" placeholder="Введите эмайл" formControlName="email">
+      <input id="create-user__email" class="create-user__input" type="text" placeholder="Введите эмайл" formControlName="email" appGradientBorder>
     </div>
     <div class="create-user__field">
       <label for="create-user__tel" class="create-user__label">Номер телефона</label>
-      <input id="create-user__tel" class="create-user__input" type="text" placeholder="Введите номер телефона" formControlName="phone">
+      <input id="create-user__tel" class="create-user__input" type="text" placeholder="Введите номер телефона" formControlName="phone" appGradientBorder>
     </div>
     <div class="create-user__field">
       <label for="create-user__website" class="create-user__label">Веб-сайт</label>
-      <input id="create-user__website" class="create-user__input" type="text" placeholder="Введите веб-сайт" formControlName="website">
+      <input id="create-user__website" class="create-user__input" type="text" placeholder="Введите веб-сайт" formControlName="website" appGradientBorder>
     </div>
     <div formGroupName="address">
       <div class="create-user__field">
         <label for="create-user__city" class="create-user__label">Город</label>
-        <input id="create-user__city" class="create-user__input" type="text" placeholder="Введите город" formControlName="city">
+        <input id="create-user__city" class="create-user__input" type="text" placeholder="Введите город" formControlName="city" appGradientBorder>
       </div>
       <div class="create-user__field">
         <label for="create-user__street" class="create-user__label">Улица</label>
-        <input id="create-user__street" class="create-user__input" type="text" placeholder="Введите улицу" formControlName="street">
+        <input id="create-user__street" class="create-user__input" type="text" placeholder="Введите улицу" formControlName="street" appGradientBorder>
       </div>
       <div class="create-user__field">
         <label for="create-user__office" class="create-user__label">Офис</label>
-        <input id="create-user__office" class="create-user__input" type="text" placeholder="Введите офис" formControlName="suite">
+        <input id="create-user__office" class="create-user__input" type="text" placeholder="Введите офис" formControlName="suite" appGradientBorder>
       </div>
       <div class="create-user__field">
         <label for="create-user__index" class="create-user__label">Индекс</label>
-        <input id="create-user__index" class="create-user__input" type="text" placeholder="Введите индекс" formControlName="zipcode">
+        <input id="create-user__index" class="create-user__input" type="text" placeholder="Введите индекс" formControlName="zipcode" appGradientBorder [gradientConfiguration]="{ delay: 3000, colors: ['blue', 'green', 'purple'], thickness: 5 }"> 
       </div>
       <div formGroupName="geo">
         <div class="create-user__field">
           <label class="create-user__label">Координаты</label>
-          <input class="create-user__input" type="text" placeholder="Введите широту" formControlName="lat">
-          <input class="create-user__input" type="text" placeholder="Введите долготу" formControlName="lng">
+          <input class="create-user__input" type="text" placeholder="Введите широту" formControlName="lat" appGradientBorder>
+          <input class="create-user__input" type="text" placeholder="Введите долготу" formControlName="lng" appGradientBorder>
         </div>
       </div>
     </div>
     <div formGroupName="company">
       <div class="create-user__field">
         <label for="create-user__company" class="create-user__label">Компания</label>
-        <input id="create-user__company" class="create-user__input" type="text" placeholder="Введите компанию" formControlName="name">
+        <input id="create-user__company" class="create-user__input" type="text" placeholder="Введите компанию" formControlName="name" appGradientBorder>
       </div>
       <div class="create-user__field">
         <label for="create-user__catchphrase" class="create-user__label">Слоган</label>
-        <input id="create-user__catchphrase" class="create-user__input" type="text" placeholder="Введите слоган" formControlName="catchPhrase">
+        <input id="create-user__catchphrase" class="create-user__input" type="text" placeholder="Введите слоган" formControlName="catchPhrase" appGradientBorder>
       </div>
       <div class="create-user__field">
         <label for="create-user__bs" class="create-user__label">Сфера</label>
-        <input id="create-user__bs" class="create-user__input" type="text" placeholder="Введите сферу деятельности" formControlName="bs">
+        <input id="create-user__bs" class="create-user__input" type="text" placeholder="Введите сферу деятельности" formControlName="bs" appGradientBorder>
       </div>
     </div>
-    <button id="create-user-btn" type="submit" [disabled]="userForm.invalid">Создать пользователя</button>
+    <button id="create-user-btn" type="submit" [disabled]="userForm.invalid" appBoldHover>Создать пользователя</button>
   </form>
 </div>
