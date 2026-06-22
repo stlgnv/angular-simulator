@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, finalize, Observable, of } from 'rxjs';
+import { BehaviorSubject, finalize, Observable, of } from 'rxjs';
 import { UsersApiService } from './users-api.service';
 import { LoaderService } from './loader.service';
 import { NotificationService } from './notification.service';
@@ -50,10 +50,6 @@ export class UserService {
     this.loaderService.showLoader();
     return this.usersApi.getUsers()
       .pipe(
-        catchError(() => {
-          this.notificationService.showErrorMessage('Нет пользователей для отображения');
-          return of([]);
-        }),
         finalize(() => this.loaderService.hideLoader()),
       );
   }

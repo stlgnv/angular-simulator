@@ -1,19 +1,22 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './components/home-page/home-page.component';
-import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
-import { UsersPageComponent } from './components/users-page/users-page.component';
 
 export const routes: Routes = [
   {
     path: '',
-    component: HomePageComponent
+    loadComponent: () =>
+      import('./components/home-page/home-page.component')
+        .then(c => c.HomePageComponent)
   },
   {
     path: 'users-page',
-    component: UsersPageComponent
+    loadComponent: () =>
+      import('./components/users-page/users-page.component')
+        .then(c => c.UsersPageComponent)
   },
   {
     path: '**',
-    component: NotFoundPageComponent
+    loadComponent: () =>
+      import('./components/not-found-page/not-found-page.component')
+        .then(c => c.NotFoundPageComponent)
   }
 ];
