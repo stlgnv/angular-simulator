@@ -5,7 +5,7 @@ import { NotificationService } from '../services/notification.service';
 
 export const errorInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>, next: HttpHandlerFn): Observable<HttpEvent<unknown>> => {
 
-  const messageService = inject(NotificationService)
+  const messageService: NotificationService = inject(NotificationService)
   return next(req)
     .pipe(
       catchError((error: HttpErrorResponse) => {
