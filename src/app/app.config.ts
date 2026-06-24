@@ -6,6 +6,9 @@ import Aura from '@primeuix/themes/aura';
 import Lara from '@primeuix/themes/lara';
 import Nora from '@primeuix/themes/nora';
 import { Theme } from '../enums/Theme';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
+import { loggingInterceptor } from './interceptors/logging.interceptor';
+import { errorInterceptor } from './interceptors/error.interceptor';
 
 type ThemePresetType = typeof Aura | typeof Lara | typeof Nora;
 
@@ -32,6 +35,7 @@ export const appConfig: ApplicationConfig = {
           darkModeSelector: '.dark-mode'
         }
       }
-    })
+    }),
+    provideHttpClient(withInterceptors([loggingInterceptor, errorInterceptor])),
   ]
 };
