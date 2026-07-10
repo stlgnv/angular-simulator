@@ -5,15 +5,24 @@ export const loggingInterceptor: HttpInterceptorFn = (req: HttpRequest<unknown>,
 
   const requestTime: number = Date.now();
 
+  const logRequest = (status: number) => {
+    console.log(
+      req.method,
+      req.url,
+      status,
+      Date.now() - requestTime
+    );
+  }
+
   return next(req)
     .pipe(
       tap((event: HttpEvent<unknown>) => {
         if (event instanceof HttpResponse) {
-          console.log(req.method, req.url, event.status, Date.now() - requestTime);
+          logRequest(event.status);
         }
       }),
       catchError((error: HttpErrorResponse) => {
-        console.log(req.method, req.url, error.status, Date.now() - requestTime);
+        logRequest(error.status);
         return throwError(() => error)
       })
     )
