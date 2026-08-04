@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { IOffer } from '../../interfaces/IOffer';
 import { NotificationService } from '../../services/notification.service';
 import { IGallery } from '../../interfaces/IGallery';
@@ -13,6 +13,7 @@ import { faArrowRight, faDollarSign, faPeopleLine, faPlay, faShieldHalved, IconD
   imports: [NgClass, FormsModule, FontAwesomeModule],
   templateUrl: './home-page.component.html',
   styleUrl: './home-page.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class HomePageComponent {
