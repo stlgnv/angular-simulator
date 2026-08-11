@@ -1,6 +1,6 @@
 import { ResolveFn } from '@angular/router';
 import { Observable } from 'rxjs';
-import { IPost } from './Ipost';
+import { IPost } from './IPost';
 import { inject } from '@angular/core';
 import { PostService } from './post.service';
 

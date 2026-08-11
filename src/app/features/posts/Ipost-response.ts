@@ -1,4 +1,4 @@
-import { IPost } from "./Ipost";
+import { IPost } from "./IPost";
 
 export interface IPostResponse {
   posts: IPost[];

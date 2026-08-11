@@ -1,7 +1,7 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { TableModule } from "primeng/table";
-import { IPost } from '../Ipost';
+import { IPost } from '../IPost';
 
 @Component({
   selector: 'app-post-detail',

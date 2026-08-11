@@ -1,10 +1,10 @@
 import { inject, Injectable } from '@angular/core';
 import { PostApiService } from './post-api.service';
 import { LoaderService } from '../../services/loader.service';
-import { catchError, EMPTY, finalize, Observable } from 'rxjs';
-import { IPostResponse } from './Ipost-response';
+import { BehaviorSubject, catchError, EMPTY, finalize, Observable, tap } from 'rxjs';
+import { IPostResponse } from './IPost-response';
 import { NotificationService } from '../../services/notification.service';
-import { IPost } from './Ipost';
+import { IPost } from './IPost';
 
 @Injectable({
   providedIn: 'root',
@@ -15,13 +15,19 @@ export class PostService {
   messageService: NotificationService = inject(NotificationService);
   loaderService: LoaderService = inject(LoaderService);
 
+  private postsSubject = new BehaviorSubject<IPost[]>([]);
+  posts$: Observable<IPost[]> = this.postsSubject.asObservable();
+
   getPosts(limit: number, skip: number): Observable<IPostResponse> {
     return this.postApiService.getPosts(limit, skip)
       .pipe(
+        tap((response: IPostResponse) =>{
+          this.postsSubject.next(response.posts);
+        }),
         catchError(() => {
           this.messageService.showErrorMessage('Не удалось получить посты');
           return EMPTY;
-        }),
+        })
       )
   }
 
@@ -57,6 +63,12 @@ export class PostService {
     this.loaderService.showLoader();
     return this.postApiService.deletePost(id)
       .pipe(
+        tap(() => {
+          const posts: IPost[] = this.postsSubject.getValue();
+          const updatedPosts: IPost[] = this.filterPost(posts, id)
+
+          this.postsSubject.next(updatedPosts);
+        }),
         finalize(() => {
           this.loaderService.hideLoader();
         }),

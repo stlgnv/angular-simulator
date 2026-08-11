@@ -3,8 +3,8 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { PostService } from '../post.service';
 import { NotificationService } from '../../../services/notification.service';
 import { Router } from '@angular/router';
-import { IPost } from '../Ipost';
-import { tap } from 'rxjs';
+import { IPost } from '../IPost';
+import { catchError, EMPTY, tap } from 'rxjs';
 
 @Component({
   selector: 'app-post-create',
@@ -18,6 +18,7 @@ export class PostCreateComponent {
   private fb: FormBuilder = inject(FormBuilder);
   postService: PostService = inject(PostService);
   router: Router = inject(Router);
+  messageService: NotificationService = inject(NotificationService);
 
   form: FormGroup = this.fb.group({
     title: ['', [Validators.required]],
@@ -36,7 +37,8 @@ export class PostCreateComponent {
       .pipe(
         tap(() => {
           this.router.navigate(['/posts']);
-        }),
-      ).subscribe();
+        })
+      )
+      .subscribe();
   }
 }

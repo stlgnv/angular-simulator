@@ -6,12 +6,13 @@ import { ContextMenuModule } from 'primeng/contextmenu';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 import { SkeletonModule } from 'primeng/skeleton';
-import { TableModule } from 'primeng/table';
-import { BehaviorSubject, finalize, Observable, tap } from 'rxjs';
-import { IPost } from '../Ipost';
-import { IPostResponse } from '../Ipost-response';
+import { TableLazyLoadEvent, TableModule } from 'primeng/table';
+import { catchError, EMPTY, finalize, Observable, tap } from 'rxjs';
+import { IPost } from '../IPost';
+import { IPostResponse } from '../IPost-response';
 import { PostService } from '../post.service';
 import { PostEditDialogComponent } from '../post-edit/post-edit.component';
+import { NotificationService } from '../../../services/notification.service';
 
 @Component({
   selector: 'app-posts',
@@ -30,17 +31,17 @@ import { PostEditDialogComponent } from '../post-edit/post-edit.component';
 })
 export class PostsComponent implements OnInit {
 
-  private router = inject(Router);
-  private dialogService = inject(DialogService);
-  private postService = inject(PostService);
+  private router: Router = inject(Router);
+  private dialogService: DialogService = inject(DialogService);
+  private postService: PostService = inject(PostService);
+  private messageService = inject(NotificationService);
 
-  private postsSubject = new BehaviorSubject<IPost[]>([]);
-  posts$: Observable<IPost[]> = this.postsSubject.asObservable();
+  posts$: Observable<IPost[]> = this.postService.posts$;
 
-  isLoading = true;
-  pageSize = 10;
-  totalRecords = 0;
-  firstNumber = 0;
+  isLoading: boolean = true;
+  pageSize: number = 10;
+  totalRecords: number = 0;
+  firstNumber: number = 0;
   selectedPost: IPost | null = null;
 
   contextMenuItems: MenuItem[] = [
@@ -66,22 +67,21 @@ export class PostsComponent implements OnInit {
     this.postService.getPosts(limit, skip)
       .pipe(
         tap((response: IPostResponse) => {
-          this.postsSubject.next(response.posts);
           this.totalRecords = response.total;
         }),
 
         finalize(() => {
           this.isLoading = false;
-        })
+        }),
+        catchError(() => {
+          this.messageService.showErrorMessage('Ошибка загрузки постов');
+          return EMPTY;
+        }),
       )
-      .subscribe({
-        error: () => {
-          console.error('Ошибка загрузки постов');
-        }
-      });
+      .subscribe();
   }
 
-  pageChange(event: any): void {
+  pageChange(event: TableLazyLoadEvent): void {
     this.firstNumber = event.first ?? 0;
     this.pageSize = event.rows ?? 10;
     this.loadPosts(this.pageSize, this.firstNumber);
@@ -123,18 +123,9 @@ export class PostsComponent implements OnInit {
     if (!this.selectedPost) {
       return;
     }
-    const selectedPostId = this.selectedPost.id;
-    this.postService.deletePost(selectedPostId)
-      .pipe(
-        tap(() => {
-          const updatedPosts = this.postService.filterPost(
-            this.postsSubject.getValue(),
-            selectedPostId
-          );
-          this.postsSubject.next(updatedPosts);
-        })
-      )
-      .subscribe();
+    
+    this.postService.deletePost(this.selectedPost.id)
+    .subscribe();
   }
 
 }
