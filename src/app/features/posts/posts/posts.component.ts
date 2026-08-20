@@ -34,7 +34,7 @@ export class PostsComponent implements OnInit {
   private router: Router = inject(Router);
   private dialogService: DialogService = inject(DialogService);
   private postService: PostService = inject(PostService);
-  private messageService = inject(NotificationService);
+  private messageService: NotificationService = inject(NotificationService);
 
   posts$: Observable<IPost[]> = this.postService.posts$;
 
@@ -124,7 +124,8 @@ export class PostsComponent implements OnInit {
       return;
     }
     
-    this.postService.deletePost(this.selectedPost.id)
+    this.postService
+    .deletePost(this.selectedPost.id)
     .subscribe();
   }
 

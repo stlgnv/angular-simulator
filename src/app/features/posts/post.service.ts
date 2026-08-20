@@ -15,13 +15,13 @@ export class PostService {
   messageService: NotificationService = inject(NotificationService);
   loaderService: LoaderService = inject(LoaderService);
 
-  private postsSubject = new BehaviorSubject<IPost[]>([]);
+  private postsSubject: BehaviorSubject<IPost[]> = new BehaviorSubject<IPost[]>([]);
   posts$: Observable<IPost[]> = this.postsSubject.asObservable();
 
   getPosts(limit: number, skip: number): Observable<IPostResponse> {
     return this.postApiService.getPosts(limit, skip)
       .pipe(
-        tap((response: IPostResponse) =>{
+        tap((response: IPostResponse) => {
           this.postsSubject.next(response.posts);
         }),
         catchError(() => {
