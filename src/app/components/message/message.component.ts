@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { NotificationService } from '../../services/notification.service';
 import { AsyncPipe, NgTemplateOutlet } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -9,6 +9,7 @@ import { faMessage, faXmark, IconDefinition } from '@fortawesome/free-solid-svg-
   imports: [NgTemplateOutlet, AsyncPipe, FontAwesomeModule],
   templateUrl: './message.component.html',
   styleUrl: './message.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class MessageComponent {

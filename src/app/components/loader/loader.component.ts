@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { LoaderService } from '../../services/loader.service';
 import { AsyncPipe } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -9,6 +9,7 @@ import { faArrowsRotate, IconDefinition } from '@fortawesome/free-solid-svg-icon
   imports: [AsyncPipe, FontAwesomeModule],
   templateUrl: './loader.component.html',
   styleUrl: './loader.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class LoaderComponent {

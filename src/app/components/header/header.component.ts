@@ -1,5 +1,5 @@
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { Component, inject } from '@angular/core';
+import { Component, inject, ChangeDetectionStrategy } from '@angular/core';
 import { IMenuItem } from '../../interfaces/IMenuItem';
 import { RouterLink, RouterLinkActive } from "@angular/router";
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -16,6 +16,7 @@ type WidgetType = 'date' | 'counter';
   imports: [DatePipe, RouterLink, RouterLinkActive, FontAwesomeModule, AsyncPipe, ToggleSwitchModule, SelectButtonModule, FormsModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true,
 })
 export class HeaderComponent {

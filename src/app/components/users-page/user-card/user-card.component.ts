@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ChangeDetectionStrategy } from '@angular/core';
 import { IUser } from '../../../interfaces/IUser';
 import { UpperCasePipe } from '@angular/common';
 import { PhoneFormatPipe } from '../../../pipes/phone-format.pipe';
@@ -10,6 +10,7 @@ import { BoldHoverDirective } from '../../../directives/bold-hover.directive';
   imports: [UpperCasePipe, PhoneFormatPipe, GradientBorderDirective, BoldHoverDirective],
   templateUrl: './user-card.component.html',
   styleUrl: './user-card.component.scss',
+  changeDetection: ChangeDetectionStrategy.Eager,
   standalone: true
 })
 export class UserCardComponent {
